@@ -327,13 +327,13 @@ const CybernetDashboard = () => {
         <div className="flex justify-center mb-8">
           {scanCompleted ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-lg w-full">
-              <Button variant="cybernetSecondary" className="h-12 text-sm bg-blue-600/20 hover:bg-blue-600/30 border-blue-600/50 text-blue-400 hover:text-blue-300">
-                <FileText className="h-4 w-4" />
-                توليد تقرير
-              </Button>
               <Button variant="cybernetSecondary" className="h-12 text-sm">
                 <History className="h-4 w-4" />
                 التقارير السابقة
+              </Button>
+              <Button variant="cybernetSecondary" className="h-12 text-sm bg-blue-600/20 hover:bg-blue-600/30 border-blue-600/50 text-blue-400 hover:text-blue-300">
+                <FileText className="h-4 w-4" />
+                توليد تقرير
               </Button>
             </div>
           ) : (
@@ -439,14 +439,20 @@ const CybernetDashboard = () => {
           </div>
         )}
 
-        {/* Settings Button */}
-        <div className="text-center">
+        {/* Settings Button - Enhanced and moved down */}
+        <div className="text-center mt-12 mb-8">
           <Button 
-            variant="cybernetGhost" 
             onClick={scrollToSettings}
             size="lg"
+            className="bg-gradient-to-r from-cybernet-red/20 via-cybernet-red/30 to-cybernet-red/20 
+                       border-2 border-cybernet-red/40 text-cybernet-red hover:text-white
+                       hover:bg-gradient-to-r hover:from-cybernet-red/40 hover:via-cybernet-red/50 hover:to-cybernet-red/40
+                       hover:border-cybernet-red/60 hover:shadow-lg hover:shadow-cybernet-red/25
+                       transform hover:scale-105 transition-all duration-300 ease-out
+                       px-8 py-4 rounded-lg font-semibold backdrop-blur-sm
+                       animate-pulse hover:animate-none"
           >
-            <Settings className="h-5 w-5" />
+            <Settings className="h-5 w-5 mr-2" />
             إعدادات متقدمة
           </Button>
         </div>
