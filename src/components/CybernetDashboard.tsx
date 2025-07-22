@@ -426,11 +426,11 @@ const CybernetDashboard = () => {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Button variant="cybernetSecondary" className="w-full">
+                <Button variant="cybernetSecondary" className="w-full bg-blue-600/20 hover:bg-blue-600/30 border-blue-600/50 text-blue-400 hover:text-blue-300">
                   <RefreshCw className="h-5 w-5" />
                   تحديث الأدوات
                 </Button>
-                <Button variant="cybernetSecondary" className="w-full">
+                <Button variant="cybernetSecondary" className="w-full bg-cybernet-red/20 hover:bg-cybernet-red/30 border-cybernet-red/50 text-cybernet-red hover:text-red-300">
                   <Power className="h-5 w-5" />
                   إعادة تشغيل الجهاز
                 </Button>
