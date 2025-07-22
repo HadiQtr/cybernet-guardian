@@ -204,39 +204,18 @@ const CybernetDashboard = () => {
           </p>
         </div>
 
-        {/* How to Use Section */}
-        <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)] mb-8">
-          <CardHeader>
-            <CardTitle className="text-cybernet-text flex items-center justify-center gap-2">
-              <FileText className="h-6 w-6 text-cybernet-red" />
-              طريقة استخدام الأداة
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid md:grid-cols-2 gap-6">
+        {/* Instructions and Severity Levels Sections */}
+        <div className="grid md:grid-cols-2 gap-8 mb-8">
+          {/* Vulnerability Severity Levels - Left Side */}
+          <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)]">
+            <CardHeader>
+              <CardTitle className="text-cybernet-text flex items-center justify-center gap-2">
+                <AlertTriangle className="h-6 w-6 text-cybernet-red" />
+                مستويات خطورة الثغرات
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
               <div className="space-y-4">
-                <h3 className="text-cybernet-red font-semibold text-right">خطوات الاستخدام :</h3>
-                <ol className="space-y-2 text-cybernet-text-muted">
-                  <li className="flex items-start gap-2">
-                    <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">1</span>
-                    اضغط على "ابدأ الفحص الأمني" لبدء مسح الشبكة
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">2</span>
-                    انتظر انتهاء الفحص (يستغرق 2-3 دقائق)
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">3</span>
-                    ستظهر النتائج تلقائياً بعد انتهاء الفحص
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">4</span>
-                    أدخل بريدك الإلكتروني وأرسل التقرير
-                  </li>
-                </ol>
-              </div>
-              <div className="space-y-4">
-                <h3 className="text-cybernet-red font-semibold text-right">مستويات خطورة الثغرات :</h3>
                 <ul className="space-y-3 text-cybernet-text-muted">
                   <li className="flex items-center gap-3">
                     <div className="w-4 h-4 bg-red-600 rounded-full"></div>
@@ -256,9 +235,41 @@ const CybernetDashboard = () => {
                   </li>
                 </ul>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+
+          {/* How to Use Tool - Right Side */}
+          <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)]">
+            <CardHeader>
+              <CardTitle className="text-cybernet-text flex items-center justify-center gap-2">
+                <FileText className="h-6 w-6 text-cybernet-red" />
+                طريقة استخدام الأداة
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <ol className="space-y-2 text-cybernet-text-muted">
+                  <li className="flex items-start gap-2">
+                    <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">1</span>
+                    اضغط على "ابدأ الفحص الأمني" لبدء مسح الشبكة
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">2</span>
+                    انتظر انتهاء الفحص (يستغرق 2-3 دقائق)
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">3</span>
+                    ستظهر النتائج تلقائياً بعد انتهاء الفحص
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">4</span>
+                    أدخل بريدك الإلكتروني وأرسل التقرير
+                  </li>
+                </ol>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
 
         {/* Main Controls - Side by side */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
