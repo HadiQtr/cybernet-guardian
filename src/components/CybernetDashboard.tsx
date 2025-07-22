@@ -215,7 +215,7 @@ const CybernetDashboard = () => {
           <CardContent>
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-4">
-                <h3 className="text-cybernet-red font-semibold text-center">خطوات الاستخدام:</h3>
+                <h3 className="text-cybernet-red font-semibold text-right">خطوات الاستخدام :</h3>
                 <ol className="space-y-2 text-cybernet-text-muted">
                   <li className="flex items-start gap-2">
                     <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">1</span>
@@ -236,7 +236,7 @@ const CybernetDashboard = () => {
                 </ol>
               </div>
               <div className="space-y-4">
-                <h3 className="text-cybernet-red font-semibold text-center">مستويات خطورة الثغرات:</h3>
+                <h3 className="text-cybernet-red font-semibold text-right">مستويات خطورة الثغرات :</h3>
                 <ul className="space-y-3 text-cybernet-text-muted">
                   <li className="flex items-center gap-3">
                     <div className="w-4 h-4 bg-red-600 rounded-full"></div>
