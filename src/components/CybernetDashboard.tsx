@@ -122,8 +122,9 @@ const CybernetDashboard = () => {
       // إشعار النجاح
       toast({
         title: "تم الفحص بنجاح",
-        description: `تم اكتشاف ${mockDevices.length} جهاز و ${mockVulnerabilities.length} ثغرة أمنية`,
+        description: `تم اكتشاف ${mockDevices.length} أجهزة و ${mockVulnerabilities.length} ثغرة أمنية`,
         className: "bg-green-600/20 border-green-600/50 text-green-400",
+        duration: 5000,
       });
     }, 3000);
   };
