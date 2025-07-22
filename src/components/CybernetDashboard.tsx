@@ -89,21 +89,37 @@ const CybernetDashboard = () => {
     // هنا سيتم إرسال التقرير فعلياً
   };
 
+  const scrollToSettings = () => {
+    setShowSettings(!showSettings);
+    if (!showSettings) {
+      setTimeout(() => {
+        document.getElementById('settings-panel')?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-cybernet-bg text-cybernet-text p-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-cybernet-bg text-cybernet-text p-6 relative overflow-hidden">
+      {/* Animated Background Lines */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cybernet-red/20 to-transparent animate-pulse"></div>
+        <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-cybernet-red/10 to-transparent animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-cybernet-red/15 to-transparent animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-3/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-cybernet-red/10 to-transparent animate-pulse" style={{animationDelay: '3s'}}></div>
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cybernet-red/20 to-transparent animate-pulse" style={{animationDelay: '4s'}}></div>
+      </div>
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-4 mb-6">
             <img 
               src="/lovable-uploads/f4abe8d3-1647-4a63-9c36-7c8a1d224a5c.png" 
-              alt="Secu-PI Logo" 
+              alt="Security Dashboard Logo" 
               className="h-16 w-auto"
             />
           </div>
-          <h1 className="text-4xl font-bold text-cybernet-text mb-4">Secu-PI</h1>
           <h2 className="text-2xl font-semibold mb-4 text-cybernet-red">لوحة التحكم الأمنية</h2>
-          <p className="text-cybernet-text-muted text-lg max-w-2xl mx-auto">
+          <p className="text-cybernet-text-muted text-lg max-w-2xl mx-auto text-center">
             جهاز ذكي لفحص أمان الشبكات واكتشاف التهديدات تلقائياً باستخدام Raspberry Pi
           </p>
         </div>
@@ -391,7 +407,7 @@ const CybernetDashboard = () => {
         <div className="text-center">
           <Button 
             variant="cybernetGhost" 
-            onClick={() => setShowSettings(!showSettings)}
+            onClick={scrollToSettings}
             size="lg"
           >
             <Settings className="h-5 w-5" />
@@ -401,7 +417,7 @@ const CybernetDashboard = () => {
 
         {/* Settings Panel */}
         {showSettings && (
-          <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)] mt-6">
+          <Card id="settings-panel" className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)] mt-6">
             <CardHeader>
               <CardTitle className="text-cybernet-text flex items-center gap-2">
                 <Settings className="h-6 w-6 text-cybernet-red" />
@@ -414,7 +430,7 @@ const CybernetDashboard = () => {
                   <RefreshCw className="h-5 w-5" />
                   تحديث الأدوات
                 </Button>
-                <Button variant="cybernetSecondary" className="w-full bg-cybernet-red/20 hover:bg-cybernet-red/30 border-cybernet-red/50">
+                <Button variant="cybernetSecondary" className="w-full">
                   <Power className="h-5 w-5" />
                   إعادة تشغيل الجهاز
                 </Button>
