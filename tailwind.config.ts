@@ -52,6 +52,14 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// CyberNET Custom Colors
+				cybernet: {
+					bg: 'hsl(var(--cybernet-bg))',
+					surface: 'hsl(var(--cybernet-surface))',
+					red: 'hsl(var(--cybernet-red))',
+					text: 'hsl(var(--cybernet-text))',
+					'text-muted': 'hsl(var(--cybernet-text-muted))'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
