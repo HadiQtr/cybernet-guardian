@@ -427,7 +427,7 @@ const CybernetDashboard = () => {
                           <details className="text-sm">
                             <summary className="text-green-400 cursor-pointer mb-2 text-right">كيفية الوقاية والحماية</summary>
                             <div className="bg-green-950/20 p-3 rounded border-r-4 border-green-600">
-                              <p className="text-right text-green-400"><strong>الحلول الموصى بها:</strong> {vuln.prevention}</p>
+                              <p className="text-right text-green-400 rtl-content"><strong>الحلول الموصى بها:</strong> {vuln.prevention}</p>
                             </div>
                           </details>
                       </div>

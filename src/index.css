@@ -118,6 +118,32 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-arabic;
+    direction: rtl; /* تطبيق اتجاه النص من اليمين لليسار */
+  }
+  
+  /* إصلاح اتجاه النص العربي مع الكلمات الإنجليزية */
+  .arabic-text {
+    direction: rtl;
+    unicode-bidi: embed;
+    text-align: right;
+  }
+  
+  /* للنصوص المختلطة عربي وإنجليزي */
+  .mixed-text {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    text-align: right;
+  }
+  
+  /* لضمان ظهور الأرقام والكلمات الإنجليزية في مكانها الصحيح */
+  .rtl-content {
+    direction: rtl;
+    text-align: right;
+  }
+  
+  .rtl-content [dir="ltr"] {
+    direction: ltr;
+    display: inline-block;
   }
 }
