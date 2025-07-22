@@ -34,6 +34,7 @@ interface Vulnerability {
   description: string;
   technicalDetails: string;
   exploitation: string;
+  prevention: string;
   severity: 'critical' | 'high' | 'medium' | 'low';
 }
 
@@ -61,6 +62,7 @@ const CybernetDashboard = () => {
       description: 'خدمة SSH تسمح بمصادقة ضعيفة',
       technicalDetails: 'الخادم يقبل كلمات مرور ضعيفة ولا يفرض سياسة أمان قوية',
       exploitation: 'يمكن للمهاجم استخدام هجمات القوة الغاشمة للوصول للنظام',
+      prevention: 'استخدم كلمات مرور قوية، فعّل المصادقة الثنائية، قم بتغيير البورت الافتراضي، واستخدم مفاتيح SSH',
       severity: 'critical'
     },
     {
@@ -69,6 +71,7 @@ const CybernetDashboard = () => {
       description: 'خدمة HTTP مكشوفة بدون تشفير',
       technicalDetails: 'خادم ويب يعمل بدون HTTPS مما يعرض البيانات للاعتراض',
       exploitation: 'اعتراض البيانات المرسلة عبر الشبكة وتعديلها',
+      prevention: 'فعّل HTTPS، استخدم شهادات SSL/TLS صالحة، وأعد توجيه HTTP إلى HTTPS',
       severity: 'medium'
     },
     {
@@ -77,6 +80,7 @@ const CybernetDashboard = () => {
       description: 'خدمة FTP تسمح بدخول مجهول',
       technicalDetails: 'خادم FTP يسمح بالدخول بدون مصادقة',
       exploitation: 'الوصول لملفات النظام وتحميل ملفات ضارة',
+      prevention: 'أوقف الدخول المجهول، استخدم SFTP أو FTPS، وطبق مصادقة قوية',
       severity: 'high'
     },
     {
@@ -85,6 +89,7 @@ const CybernetDashboard = () => {
       description: 'تسريب معلومات النظام',
       technicalDetails: 'الخادم يكشف عن معلومات حساسة في الرؤوس',
       exploitation: 'جمع معلومات عن النظام لتحضير هجمات أخرى',
+      prevention: 'أخف معلومات الخادم، احذف الرؤوس غير الضرورية، وقم بتحديث البرامج',
       severity: 'low'
     }
   ];
@@ -412,13 +417,19 @@ const CybernetDashboard = () => {
                           </div>
                         </div>
                          <p className="text-cybernet-text-muted mb-2 text-right">{vuln.description}</p>
-                         <details className="text-sm">
-                           <summary className="text-cybernet-red cursor-pointer mb-2 text-right">التفاصيل التقنية</summary>
-                           <div className="bg-cybernet-bg p-3 rounded border-r-4 border-cybernet-red">
-                             <p className="mb-2 text-right"><strong>التفاصيل:</strong> {vuln.technicalDetails}</p>
-                             <p className="text-right"><strong>طريقة الاستغلال:</strong> {vuln.exploitation}</p>
-                           </div>
-                         </details>
+                          <details className="text-sm mb-2">
+                            <summary className="text-cybernet-red cursor-pointer mb-2 text-right">التفاصيل التقنية</summary>
+                            <div className="bg-cybernet-bg p-3 rounded border-r-4 border-cybernet-red">
+                              <p className="mb-2 text-right"><strong>التفاصيل:</strong> {vuln.technicalDetails}</p>
+                              <p className="text-right"><strong>طريقة الاستغلال:</strong> {vuln.exploitation}</p>
+                            </div>
+                          </details>
+                          <details className="text-sm">
+                            <summary className="text-green-400 cursor-pointer mb-2 text-right">كيفية الوقاية والحماية</summary>
+                            <div className="bg-green-950/20 p-3 rounded border-r-4 border-green-600">
+                              <p className="text-right text-green-400"><strong>الحلول الموصى بها:</strong> {vuln.prevention}</p>
+                            </div>
+                          </details>
                       </div>
                     ))}
                   </div>
@@ -466,6 +477,92 @@ const CybernetDashboard = () => {
           </Card>
         )}
       </div>
+      
+      {/* Footer */}
+      <footer className="mt-16 pb-8">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)]">
+            <CardContent className="p-8">
+              <div className="text-center space-y-6">
+                {/* Main message */}
+                <div className="mb-8">
+                  <h3 className="text-xl font-bold text-cybernet-red mb-2">
+                    تم بناء هذه الأداة من قبل فريق SECU
+                  </h3>
+                  <p className="text-lg text-cybernet-text mb-2">
+                    في المخيم الشبابي للأمن السيبراني
+                  </p>
+                  <p className="text-lg font-semibold text-yellow-400 mb-4">
+                    🇶🇦 صُنع في قطر بأيادي قطرية 🇶🇦
+                  </p>
+                </div>
+
+                {/* Team members */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-cybernet-red border-b border-cybernet-red/30 pb-2">
+                      أعضاء الفريق
+                    </h4>
+                    
+                    <div className="space-y-3">
+                      <div className="p-3 bg-cybernet-bg rounded-lg border border-cybernet-red/20">
+                        <p className="text-cybernet-text font-semibold text-right">
+                          هادي خالد السبيعي
+                        </p>
+                        <p className="text-cybernet-text-muted text-sm text-right">
+                          قائد الفريق - مطور البرمجيات والشبكات
+                        </p>
+                      </div>
+                      
+                      <div className="p-3 bg-cybernet-bg rounded-lg border border-cybernet-red/20">
+                        <p className="text-cybernet-text font-semibold text-right">
+                          عبدالله ابراهيم العمادي
+                        </p>
+                        <p className="text-cybernet-text-muted text-sm text-right">
+                          مطور البرمجيات
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <h4 className="text-lg font-semibold text-cybernet-red border-b border-cybernet-red/30 pb-2">
+                      &nbsp;
+                    </h4>
+                    
+                    <div className="space-y-3">
+                      <div className="p-3 bg-cybernet-bg rounded-lg border border-cybernet-red/20">
+                        <p className="text-cybernet-text font-semibold text-right">
+                          جبر جاسم النعمة
+                        </p>
+                        <p className="text-cybernet-text-muted text-sm text-right">
+                          مطور الموقع الالكتروني
+                        </p>
+                      </div>
+                      
+                      <div className="p-3 bg-cybernet-bg rounded-lg border border-cybernet-red/20">
+                        <p className="text-cybernet-text font-semibold text-right">
+                          ناصر الغفاري
+                        </p>
+                        <p className="text-cybernet-text-muted text-sm text-right">
+                          مسؤول الديزاين والتصميم
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Copyright */}
+                <div className="pt-6 border-t border-cybernet-red/20">
+                  <p className="text-cybernet-text-muted text-sm">
+                    © 2024 فريق SECU - جميع الحقوق محفوظة
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </footer>
     </div>
   );
 };
