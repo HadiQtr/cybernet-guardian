@@ -449,8 +449,7 @@ const CybernetDashboard = () => {
                        hover:bg-gradient-to-r hover:from-cybernet-red/40 hover:via-cybernet-red/50 hover:to-cybernet-red/40
                        hover:border-cybernet-red/60 hover:shadow-lg hover:shadow-cybernet-red/25
                        transform hover:scale-105 transition-all duration-300 ease-out
-                       px-8 py-4 rounded-lg font-semibold backdrop-blur-sm
-                       animate-pulse hover:animate-none"
+                       px-8 py-4 rounded-lg font-semibold backdrop-blur-sm"
           >
             <Settings className="h-5 w-5 mr-2" />
             إعدادات متقدمة
