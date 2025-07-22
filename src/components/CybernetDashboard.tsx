@@ -487,35 +487,41 @@ const CybernetDashboard = () => {
                 {/* Main message */}
                 <div className="mb-8">
                   <h3 className="text-xl font-bold text-cybernet-red mb-2">
-                    تم بناء هذه الأداة من قبل فريق SECU
+                    Built By SECU Team
                   </h3>
                   <p className="text-lg text-cybernet-text mb-2">
                     في المخيم الشبابي للأمن السيبراني
                   </p>
-                  <p className="text-lg font-semibold text-yellow-400 mb-4">
-                    🇶🇦 صُنع في قطر بأيادي قطرية 🇶🇦
+                  <p className="text-lg font-semibold text-cybernet-red mb-4">
+                    صُنع في قطر بأيادي قطرية
                   </p>
                 </div>
 
-                {/* Team members */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-cybernet-red border-b border-cybernet-red/30 pb-2">
-                      أعضاء الفريق
-                    </h4>
-                    
-                    <div className="space-y-3">
-                      <div className="p-3 bg-cybernet-bg rounded-lg border border-cybernet-red/20">
-                        <p className="text-cybernet-text font-semibold text-right">
+                {/* Team members section */}
+                <div className="mb-8">
+                  <h4 className="text-2xl font-bold text-cybernet-text mb-6">
+                    أعضاء الفريق
+                  </h4>
+                  
+                  {/* Team grid - 2x2 layout */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                    {/* Top Row */}
+                    {/* قائد الفريق - فوق يمين */}
+                    <div className="order-1 md:order-1">
+                      <div className="p-4 bg-cybernet-bg rounded-lg border border-cybernet-red/20 h-full">
+                        <p className="text-cybernet-text font-bold text-lg text-right mb-2">
                           هادي خالد السبيعي
                         </p>
                         <p className="text-cybernet-text-muted text-sm text-right">
                           قائد الفريق - مطور البرمجيات والشبكات
                         </p>
                       </div>
-                      
-                      <div className="p-3 bg-cybernet-bg rounded-lg border border-cybernet-red/20">
-                        <p className="text-cybernet-text font-semibold text-right">
+                    </div>
+                    
+                    {/* عبدالله ابراهيم - فوق يسار */}
+                    <div className="order-2 md:order-2">
+                      <div className="p-4 bg-cybernet-bg rounded-lg border border-cybernet-red/20 h-full">
+                        <p className="text-cybernet-text font-bold text-lg text-right mb-2">
                           عبدالله ابراهيم العمادي
                         </p>
                         <p className="text-cybernet-text-muted text-sm text-right">
@@ -523,25 +529,24 @@ const CybernetDashboard = () => {
                         </p>
                       </div>
                     </div>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <h4 className="text-lg font-semibold text-cybernet-red border-b border-cybernet-red/30 pb-2">
-                      &nbsp;
-                    </h4>
                     
-                    <div className="space-y-3">
-                      <div className="p-3 bg-cybernet-bg rounded-lg border border-cybernet-red/20">
-                        <p className="text-cybernet-text font-semibold text-right">
+                    {/* Bottom Row */}
+                    {/* جبر النعمة - تحت يمين */}
+                    <div className="order-3 md:order-3">
+                      <div className="p-4 bg-cybernet-bg rounded-lg border border-cybernet-red/20 h-full">
+                        <p className="text-cybernet-text font-bold text-lg text-right mb-2">
                           جبر جاسم النعمة
                         </p>
                         <p className="text-cybernet-text-muted text-sm text-right">
                           مطور الموقع الالكتروني
                         </p>
                       </div>
-                      
-                      <div className="p-3 bg-cybernet-bg rounded-lg border border-cybernet-red/20">
-                        <p className="text-cybernet-text font-semibold text-right">
+                    </div>
+                    
+                    {/* ناصر الغفاري - تحت يسار */}
+                    <div className="order-4 md:order-4">
+                      <div className="p-4 bg-cybernet-bg rounded-lg border border-cybernet-red/20 h-full">
+                        <p className="text-cybernet-text font-bold text-lg text-right mb-2">
                           ناصر الغفاري
                         </p>
                         <p className="text-cybernet-text-muted text-sm text-right">
