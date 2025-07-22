@@ -153,7 +153,7 @@ const CybernetDashboard = () => {
             style={{
               left: `${5 + i * 4.5}%`,
               height: '60px',
-              animationDelay: `${Math.random() * 3}s`,
+              animationDelay: `${-Math.random() * 3}s`,
               animationDuration: `${2 + Math.random() * 2}s`
             }}
           />
@@ -165,7 +165,7 @@ const CybernetDashboard = () => {
             style={{
               left: `${10 + i * 5.2}%`,
               height: '40px',
-              animationDelay: `${Math.random() * 4}s`,
+              animationDelay: `${-Math.random() * 4}s`,
               animationDuration: `${3 + Math.random() * 2}s`
             }}
           />
@@ -177,7 +177,7 @@ const CybernetDashboard = () => {
             style={{
               left: `${7 + i * 7.5}%`,
               height: '80px',
-              animationDelay: `${Math.random() * 5}s`,
+              animationDelay: `${-Math.random() * 5}s`,
               animationDuration: `${4 + Math.random() * 2}s`
             }}
           />
@@ -411,14 +411,14 @@ const CybernetDashboard = () => {
                             </Badge>
                           </div>
                         </div>
-                        <p className="text-cybernet-text-muted mb-2 text-center">{vuln.description}</p>
-                        <details className="text-sm">
-                          <summary className="text-cybernet-red cursor-pointer mb-2 text-center">التفاصيل التقنية</summary>
-                          <div className="bg-cybernet-bg p-3 rounded border-r-4 border-cybernet-red">
-                            <p className="mb-2 text-center"><strong>التفاصيل:</strong> {vuln.technicalDetails}</p>
-                            <p className="text-center"><strong>طريقة الاستغلال:</strong> {vuln.exploitation}</p>
-                          </div>
-                        </details>
+                         <p className="text-cybernet-text-muted mb-2 text-right">{vuln.description}</p>
+                         <details className="text-sm">
+                           <summary className="text-cybernet-red cursor-pointer mb-2 text-right">التفاصيل التقنية</summary>
+                           <div className="bg-cybernet-bg p-3 rounded border-r-4 border-cybernet-red">
+                             <p className="mb-2 text-right"><strong>التفاصيل:</strong> {vuln.technicalDetails}</p>
+                             <p className="text-right"><strong>طريقة الاستغلال:</strong> {vuln.exploitation}</p>
+                           </div>
+                         </details>
                       </div>
                     ))}
                   </div>
