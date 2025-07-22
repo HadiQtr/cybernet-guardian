@@ -213,49 +213,65 @@ const CybernetDashboard = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="space-y-4">
-                <h3 className="text-cybernet-red font-semibold text-right">خطوات الاستخدام :</h3>
-                <ol className="space-y-2 text-cybernet-text-muted">
-                  <li className="flex items-start gap-2">
-                    <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">1</span>
-                    اضغط على "ابدأ الفحص الأمني" لبدء مسح الشبكة
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">2</span>
-                    انتظر انتهاء الفحص (يستغرق 2-3 دقائق)
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">3</span>
-                    ستظهر النتائج تلقائياً بعد انتهاء الفحص
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">4</span>
-                    أدخل بريدك الإلكتروني وأرسل التقرير
-                  </li>
-                </ol>
-              </div>
-              <div className="space-y-4">
-                <h3 className="text-cybernet-red font-semibold text-right">مستويات خطورة الثغرات :</h3>
-                <ul className="space-y-3 text-cybernet-text-muted">
-                  <li className="flex items-center gap-3">
-                    <div className="w-4 h-4 bg-red-600 rounded-full"></div>
-                    <span className="text-red-400 font-semibold">خطيرة جداً</span> - تتطلب تدخل فوري
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-4 h-4 bg-orange-600 rounded-full"></div>
-                    <span className="text-orange-400 font-semibold">خطيرة</span> - تحتاج إصلاح سريع
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-4 h-4 bg-yellow-600 rounded-full"></div>
-                    <span className="text-yellow-400 font-semibold">متوسطة</span> - يُنصح بالإصلاح
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-4 h-4 bg-green-600 rounded-full"></div>
-                    <span className="text-green-400 font-semibold">منخفضة</span> - معلومات إضافية
-                  </li>
-                </ul>
-              </div>
+            <div className="space-y-4">
+              <h3 className="text-cybernet-red font-semibold text-right">خطوات الاستخدام :</h3>
+              <ol className="space-y-2 text-cybernet-text-muted">
+                <li className="flex items-start gap-2">
+                  <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">1</span>
+                  اضغط على "ابدأ الفحص الأمني" لبدء مسح الشبكة
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">2</span>
+                  انتظر انتهاء الفحص (يستغرق 2-3 دقائق)
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">3</span>
+                  ستظهر النتائج تلقائياً بعد انتهاء الفحص
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">4</span>
+                  أدخل بريدك الإلكتروني وأرسل التقرير
+                </li>
+              </ol>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Severity Levels Section - Modern Animated Design */}
+        <Card className="bg-gradient-to-br from-cybernet-surface via-cybernet-surface to-cybernet-bg border-cybernet-red/30 shadow-[0_20px_40px_-10px_rgba(220,38,38,0.3)] mb-8 overflow-hidden relative">
+          {/* Animated background effects */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 left-0 w-32 h-32 bg-cybernet-red rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-0 right-0 w-40 h-40 bg-cybernet-red rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+          </div>
+          
+          <CardHeader className="relative z-10">
+            <CardTitle className="text-cybernet-text flex items-center justify-center gap-2">
+              <AlertTriangle className="h-6 w-6 text-cybernet-red animate-pulse" />
+              مستويات خطورة الثغرات
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="relative z-10">
+            <div className="space-y-4">
+              <h3 className="text-cybernet-red font-semibold text-right">مستويات خطورة الثغرات :</h3>
+              <ul className="space-y-4 text-cybernet-text-muted">
+                <li className="flex items-center gap-3 p-3 rounded-lg bg-red-600/10 border border-red-600/20 hover:bg-red-600/20 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-red-600/25">
+                  <div className="w-4 h-4 bg-red-600 rounded-full animate-pulse"></div>
+                  <span className="text-red-400 font-semibold">خطيرة جداً</span> - تتطلب تدخل فوري
+                </li>
+                <li className="flex items-center gap-3 p-3 rounded-lg bg-orange-600/10 border border-orange-600/20 hover:bg-orange-600/20 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-orange-600/25" style={{animationDelay: '0.2s'}}>
+                  <div className="w-4 h-4 bg-orange-600 rounded-full animate-pulse"></div>
+                  <span className="text-orange-400 font-semibold">خطيرة</span> - تحتاج إصلاح سريع
+                </li>
+                <li className="flex items-center gap-3 p-3 rounded-lg bg-yellow-600/10 border border-yellow-600/20 hover:bg-yellow-600/20 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-600/25" style={{animationDelay: '0.4s'}}>
+                  <div className="w-4 h-4 bg-yellow-600 rounded-full animate-pulse"></div>
+                  <span className="text-yellow-400 font-semibold">متوسطة</span> - يُنصح بالإصلاح
+                </li>
+                <li className="flex items-center gap-3 p-3 rounded-lg bg-green-600/10 border border-green-600/20 hover:bg-green-600/20 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-600/25" style={{animationDelay: '0.6s'}}>
+                  <div className="w-4 h-4 bg-green-600 rounded-full animate-pulse"></div>
+                  <span className="text-green-400 font-semibold">منخفضة</span> - معلومات إضافية
+                </li>
+              </ul>
             </div>
           </CardContent>
         </Card>
