@@ -101,118 +101,64 @@ const CybernetDashboard = () => {
               className="h-16 w-auto"
             />
           </div>
-          <h2 className="text-3xl font-bold mb-4 text-cybernet-red">منصة الأمان الذكية للشركات</h2>
-          <p className="text-cybernet-text-muted text-lg max-w-3xl mx-auto leading-relaxed">
-            حلول أمنية متطورة لاختبار الاختراق وتحليل الشبكات المؤسسية - اكتشف الثغرات قبل المخترقين
+          <h1 className="text-4xl font-bold text-cybernet-text mb-4">Secu-PI</h1>
+          <h2 className="text-2xl font-semibold mb-4 text-cybernet-red">لوحة التحكم الأمنية</h2>
+          <p className="text-cybernet-text-muted text-lg max-w-2xl mx-auto">
+            جهاز ذكي لفحص أمان الشبكات واكتشاف التهديدات تلقائياً باستخدام Raspberry Pi
           </p>
-        </div>
-
-        {/* Enterprise Features Overview */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
-          <Card className="bg-gradient-to-br from-cybernet-surface to-cybernet-surface/80 border-cybernet-red/30 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] transition-all duration-300">
-            <CardContent className="p-6 text-center">
-              <Shield className="h-12 w-12 text-cybernet-red mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-cybernet-text mb-2">اختبار الاختراق</h3>
-              <p className="text-cybernet-text-muted">فحص شامل للثغرات الأمنية وتقييم مستوى الحماية</p>
-            </CardContent>
-          </Card>
-          
-          <Card className="bg-gradient-to-br from-cybernet-surface to-cybernet-surface/80 border-cybernet-red/30 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] transition-all duration-300">
-            <CardContent className="p-6 text-center">
-              <Users className="h-12 w-12 text-cybernet-red mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-cybernet-text mb-2">مراقبة الشبكة</h3>
-              <p className="text-cybernet-text-muted">رصد مستمر للأجهزة والاتصالات المشبوهة</p>
-            </CardContent>
-          </Card>
-          
-          <Card className="bg-gradient-to-br from-cybernet-surface to-cybernet-surface/80 border-cybernet-red/30 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] transition-all duration-300">
-            <CardContent className="p-6 text-center">
-              <FileText className="h-12 w-12 text-cybernet-red mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-cybernet-text mb-2">تقارير تفصيلية</h3>
-              <p className="text-cybernet-text-muted">تحليلات مفصلة وتوصيات لتحسين الأمان</p>
-            </CardContent>
-          </Card>
         </div>
 
         {/* How to Use Section */}
         <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)] mb-8">
           <CardHeader>
             <CardTitle className="text-cybernet-text flex items-center gap-2">
-              <Play className="h-6 w-6 text-cybernet-red" />
-              دليل الاستخدام للشركات
+              <FileText className="h-6 w-6 text-cybernet-red" />
+              طريقة استخدام الأداة
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="space-y-6">
-                <h3 className="text-cybernet-red font-semibold text-lg">خطوات التقييم الأمني:</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <span className="bg-cybernet-red text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-semibold">1</span>
-                    <div>
-                      <h4 className="text-cybernet-text font-medium">فحص البنية التحتية</h4>
-                      <p className="text-cybernet-text-muted text-sm">اكتشاف جميع الأجهزة والخدمات المتصلة</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="bg-cybernet-red text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-semibold">2</span>
-                    <div>
-                      <h4 className="text-cybernet-text font-medium">تحليل الثغرات</h4>
-                      <p className="text-cybernet-text-muted text-sm">فحص متقدم للثغرات المعروفة وغير المعروفة</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="bg-cybernet-red text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-semibold">3</span>
-                    <div>
-                      <h4 className="text-cybernet-text font-medium">تقييم المخاطر</h4>
-                      <p className="text-cybernet-text-muted text-sm">تصنيف التهديدات حسب الأولوية والخطورة</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <span className="bg-cybernet-red text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-semibold">4</span>
-                    <div>
-                      <h4 className="text-cybernet-text font-medium">التوثيق والتقارير</h4>
-                      <p className="text-cybernet-text-muted text-sm">تقارير شاملة مع خطة المعالجة</p>
-                    </div>
-                  </div>
-                </div>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-4">
+                <h3 className="text-cybernet-red font-semibold">خطوات الاستخدام:</h3>
+                <ol className="space-y-2 text-cybernet-text-muted">
+                  <li className="flex items-start gap-2">
+                    <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">1</span>
+                    اضغط على "ابدأ الفحص الأمني" لبدء مسح الشبكة
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">2</span>
+                    انتظر انتهاء الفحص (يستغرق 2-3 دقائق)
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">3</span>
+                    اعرض النتائج من خلال أزرار العرض
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">4</span>
+                    أدخل بريدك الإلكتروني وأرسل التقرير
+                  </li>
+                </ol>
               </div>
-              <div className="space-y-6">
-                <h3 className="text-cybernet-red font-semibold text-lg">المزايا المتقدمة:</h3>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-cybernet-red rounded-full"></div>
-                    <span className="text-cybernet-text-muted">فحص الثغرات Zero-Day</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-cybernet-red rounded-full"></div>
-                    <span className="text-cybernet-text-muted">محاكاة هجمات APT متقدمة</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-cybernet-red rounded-full"></div>
-                    <span className="text-cybernet-text-muted">تحليل حركة البيانات المشفرة</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-cybernet-red rounded-full"></div>
-                    <span className="text-cybernet-text-muted">اختبار هندسة اجتماعية</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-cybernet-red rounded-full"></div>
-                    <span className="text-cybernet-text-muted">فحص تطبيقات الويب والAPI</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-cybernet-red rounded-full"></div>
-                    <span className="text-cybernet-text-muted">تقييم أمان Active Directory</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-cybernet-red rounded-full"></div>
-                    <span className="text-cybernet-text-muted">مراقبة السلوك الشاذ للموظفين</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-cybernet-red rounded-full"></div>
-                    <span className="text-cybernet-text-muted">تقارير GDPR و ISO 27001</span>
-                  </div>
-                </div>
+              <div className="space-y-4">
+                <h3 className="text-cybernet-red font-semibold">ميزات الأداة:</h3>
+                <ul className="space-y-2 text-cybernet-text-muted">
+                  <li className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-cybernet-red rounded-full"></div>
+                    اكتشاف الأجهزة المتصلة بالشبكة
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-cybernet-red rounded-full"></div>
+                    فحص الثغرات الأمنية المعروفة
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-cybernet-red rounded-full"></div>
+                    توليد تقارير مفصلة بصيغة PDF
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-cybernet-red rounded-full"></div>
+                    إرسال التقارير عبر البريد الإلكتروني
+                  </li>
+                </ul>
               </div>
             </div>
           </CardContent>
@@ -224,10 +170,10 @@ const CybernetDashboard = () => {
             <CardHeader>
               <CardTitle className="text-cybernet-text flex items-center gap-2">
                 <Scan className="h-6 w-6 text-cybernet-red" />
-                فحص شامل للمؤسسة
+                فحص الشبكة
               </CardTitle>
               <CardDescription className="text-cybernet-text-muted">
-                تقييم أمني متكامل للبنية التحتية والتطبيقات والشبكات المؤسسية
+                ابدأ فحص شامل للشبكة واكتشاف الأجهزة والثغرات الأمنية
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -240,47 +186,44 @@ const CybernetDashboard = () => {
                 {isScanning ? (
                   <>
                     <RefreshCw className="h-5 w-5 animate-spin" />
-                    جاري الفحص الأمني المتقدم...
+                    جاري الفحص الأمني...
                   </>
                 ) : (
                   <>
                     <Play className="h-5 w-5" />
-                    ابدأ التقييم الأمني الشامل
+                    ابدأ الفحص الأمني
                   </>
                 )}
               </Button>
             </CardContent>
           </Card>
 
-          {/* Executive Report */}
+          {/* Email Report */}
           <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)]">
             <CardHeader>
               <CardTitle className="text-cybernet-text flex items-center gap-2">
                 <Mail className="h-6 w-6 text-cybernet-red" />
-                تقرير تنفيذي للإدارة
+                إرسال التقرير
               </CardTitle>
-              <CardDescription className="text-cybernet-text-muted">
-                إرسال تقرير مفصل للإدارة العليا مع تقييم المخاطر والتوصيات
-              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <Input
                 type="email"
-                placeholder="البريد الإلكتروني للإدارة التنفيذية"
+                placeholder="أدخل البريد الإلكتروني"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="bg-cybernet-bg border-cybernet-red/30 text-cybernet-text"
               />
               <Button onClick={handleSendReport} className="w-full">
                 <Mail className="h-5 w-5" />
-                إرسال التقرير التنفيذي
+                أرسل التقرير للبريد
               </Button>
             </CardContent>
           </Card>
         </div>
 
-        {/* Enterprise Security Dashboard */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        {/* Action Buttons Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] transition-all duration-300">
             <CardContent className="p-6">
               <Button 
@@ -289,7 +232,7 @@ const CybernetDashboard = () => {
                 className="w-full h-20 flex flex-col gap-2"
               >
                 <Users className="h-8 w-8" />
-                <span className="text-sm">بيانات الشبكة والأجهزة</span>
+                <span className="text-sm">عرض الأجهزة المتصلة</span>
               </Button>
             </CardContent>
           </Card>
@@ -302,7 +245,7 @@ const CybernetDashboard = () => {
                 className="w-full h-20 flex flex-col gap-2"
               >
                 <AlertTriangle className="h-8 w-8" />
-                <span className="text-sm">تحليل التهديدات</span>
+                <span className="text-sm">عرض نتائج الثغرات</span>
               </Button>
             </CardContent>
           </Card>
@@ -311,28 +254,19 @@ const CybernetDashboard = () => {
             <CardContent className="p-6">
               <Button variant="cybernetSecondary" className="w-full h-20 flex flex-col gap-2">
                 <FileText className="h-8 w-8" />
-                <span className="text-sm">تقرير الامتثال</span>
-              </Button>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] transition-all duration-300">
-            <CardContent className="p-6">
-              <Button variant="cybernetSecondary" className="w-full h-20 flex flex-col gap-2">
-                <Shield className="h-8 w-8" />
-                <span className="text-sm">خطة المعالجة</span>
+                <span className="text-sm">توليد تقرير PDF جديد</span>
               </Button>
             </CardContent>
           </Card>
         </div>
 
-        {/* Advanced Enterprise Features */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        {/* Additional Options */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)]">
             <CardHeader>
               <CardTitle className="text-cybernet-text flex items-center gap-2">
                 <History className="h-6 w-6 text-cybernet-red" />
-                إدارة التقارير والسجلات
+                إدارة التقارير
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -342,15 +276,11 @@ const CybernetDashboard = () => {
                 className="w-full"
               >
                 <History className="h-5 w-5" />
-                أرشيف التقارير
+                عرض التقارير السابقة
               </Button>
               <Button variant="cybernetSecondary" className="w-full">
                 <Download className="h-5 w-5" />
-                تصدير البيانات
-              </Button>
-              <Button variant="cybernetSecondary" className="w-full">
-                <FileText className="h-5 w-5" />
-                تقرير الامتثال
+                تحميل آخر تقرير
               </Button>
             </CardContent>
           </Card>
@@ -359,44 +289,17 @@ const CybernetDashboard = () => {
             <CardHeader>
               <CardTitle className="text-cybernet-text flex items-center gap-2">
                 <Eye className="h-6 w-6 text-cybernet-red" />
-                مراقبة وتحليل متقدم
+                مراقبة الشبكة
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <Button variant="cybernetSecondary" className="w-full">
                 <RefreshCw className="h-5 w-5" />
-                مراقبة فورية
+                فحص سريع
               </Button>
               <Button variant="cybernetSecondary" className="w-full">
                 <Shield className="h-5 w-5" />
-                فحص السلوك الشاذ
-              </Button>
-              <Button variant="cybernetSecondary" className="w-full">
-                <AlertTriangle className="h-5 w-5" />
-                إنذار التهديدات
-              </Button>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)]">
-            <CardHeader>
-              <CardTitle className="text-cybernet-text flex items-center gap-2">
-                <Settings className="h-6 w-6 text-cybernet-red" />
-                أدوات المؤسسة
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <Button variant="cybernetSecondary" className="w-full">
-                <Users className="h-5 w-5" />
-                إدارة الفرق
-              </Button>
-              <Button variant="cybernetSecondary" className="w-full">
-                <Mail className="h-5 w-5" />
-                إشعارات تلقائية
-              </Button>
-              <Button variant="cybernetSecondary" className="w-full">
-                <Shield className="h-5 w-5" />
-                سياسات الأمان
+                مراقبة مستمرة
               </Button>
             </CardContent>
           </Card>
