@@ -528,26 +528,26 @@ const CybernetDashboard = () => {
                     </div>
                     
                     {/* Bottom Row */}
-                    {/* ناصر الغفاري - تحت يمين */}
+                    {/* جبر النعمة - تحت يمين */}
                     <div className="order-3 md:order-3">
-                      <div className="p-4 bg-cybernet-bg rounded-lg border border-cybernet-red/20 h-full">
-                        <p className="text-cybernet-text font-bold text-lg text-right mb-2">
-                          ناصر الغفاري
-                        </p>
-                        <p className="text-cybernet-text-muted text-sm text-right">
-                          مسؤول الديزاين والتصميم
-                        </p>
-                      </div>
-                    </div>
-                    
-                    {/* جبر النعمة - تحت يسار */}
-                    <div className="order-4 md:order-4">
                       <div className="p-4 bg-cybernet-bg rounded-lg border border-cybernet-red/20 h-full">
                         <p className="text-cybernet-text font-bold text-lg text-right mb-2">
                           جبر جاسم النعمة
                         </p>
                         <p className="text-cybernet-text-muted text-sm text-right">
                           مطور الموقع الالكتروني
+                        </p>
+                      </div>
+                    </div>
+                    
+                    {/* ناصر الغفاري - تحت يسار */}
+                    <div className="order-4 md:order-4">
+                      <div className="p-4 bg-cybernet-bg rounded-lg border border-cybernet-red/20 h-full">
+                        <p className="text-cybernet-text font-bold text-lg text-right mb-2">
+                          ناصر الغفاري
+                        </p>
+                        <p className="text-cybernet-text-muted text-sm text-right">
+                          مسؤول الديزاين والتصميم
                         </p>
                       </div>
                     </div>
