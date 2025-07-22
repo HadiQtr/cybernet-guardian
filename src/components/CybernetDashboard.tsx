@@ -262,61 +262,61 @@ const CybernetDashboard = () => {
 
         {/* Main Controls - Side by side */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {/* Scan Section - Takes 2 columns (wider) */}
+          {/* Email Report Section - Takes 2 columns (wider) */}
           <div className="md:col-span-2">
             <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)] h-full">
               <CardHeader className="text-center">
                 <CardTitle className="text-cybernet-text flex items-center justify-center gap-2">
-                  <Scan className="h-6 w-6 text-cybernet-red" />
-                  فحص الشبكة
-                </CardTitle>
-                <CardDescription className="text-cybernet-text-muted">
-                  ابدأ فحص شامل للشبكة واكتشاف الأجهزة والثغرات الأمنية
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Button 
-                  onClick={handleSecurityScan} 
-                  disabled={isScanning}
-                  size="lg"
-                  className="w-full"
-                >
-                  {isScanning ? (
-                    <>
-                      <RefreshCw className="h-5 w-5 animate-spin" />
-                      جاري الفحص الأمني...
-                    </>
-                  ) : (
-                    <>
-                      <Play className="h-5 w-5" />
-                      ابدأ الفحص الأمني
-                    </>
-                  )}
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Email Report Section - Takes 1 column (narrower) */}
-          <div className="md:col-span-1">
-            <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)] h-full">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-cybernet-text flex items-center justify-center gap-2 text-lg">
-                  <Mail className="h-5 w-5 text-cybernet-red" />
+                  <Mail className="h-6 w-6 text-cybernet-red" />
                   إرسال التقرير
                 </CardTitle>
+                <CardDescription className="text-cybernet-text-muted">
+                  أدخل بريدك الإلكتروني وأرسل التقرير الأمني المفصل
+                </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-3">
+              <CardContent className="space-y-4">
                 <Input
                   type="email"
                   placeholder="أدخل البريد الإلكتروني"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="bg-cybernet-bg border-cybernet-red/30 text-cybernet-text h-10"
+                  className="bg-cybernet-bg border-cybernet-red/30 text-cybernet-text h-12"
                 />
-                <Button onClick={handleSendReport} className="w-full h-10">
-                  <Mail className="h-4 w-4" />
+                <Button onClick={handleSendReport} size="lg" className="w-full">
+                  <Mail className="h-5 w-5" />
                   أرسل التقرير
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Scan Section - Takes 1 column (narrower) */}
+          <div className="md:col-span-1">
+            <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)] h-full">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-cybernet-text flex items-center justify-center gap-2 text-lg">
+                  <Scan className="h-5 w-5 text-cybernet-red" />
+                  فحص الشبكة
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <Button 
+                  onClick={handleSecurityScan} 
+                  disabled={isScanning}
+                  size="lg"
+                  className="w-full h-12"
+                >
+                  {isScanning ? (
+                    <>
+                      <RefreshCw className="h-5 w-5 animate-spin" />
+                      جاري الفحص...
+                    </>
+                  ) : (
+                    <>
+                      <Play className="h-5 w-5" />
+                      ابدأ الفحص
+                    </>
+                  )}
                 </Button>
               </CardContent>
             </Card>
@@ -327,13 +327,13 @@ const CybernetDashboard = () => {
         <div className="flex justify-center mb-8">
           {scanCompleted ? (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-lg w-full">
-              <Button variant="cybernetSecondary" className="h-12 text-sm bg-blue-600/20 hover:bg-blue-600/30 border-blue-600/50 text-blue-400 hover:text-blue-300">
-                <FileText className="h-4 w-4" />
-                توليد تقرير
-              </Button>
               <Button variant="cybernetSecondary" className="h-12 text-sm">
                 <History className="h-4 w-4" />
                 التقارير السابقة
+              </Button>
+              <Button variant="cybernetSecondary" className="h-12 text-sm bg-blue-600/20 hover:bg-blue-600/30 border-blue-600/50 text-blue-400 hover:text-blue-300">
+                <FileText className="h-4 w-4" />
+                توليد تقرير
               </Button>
             </div>
           ) : (
@@ -439,16 +439,22 @@ const CybernetDashboard = () => {
           </div>
         )}
 
-        {/* Settings Button */}
-        <div className="text-center">
-          <Button 
-            variant="cybernetGhost" 
-            onClick={scrollToSettings}
-            size="lg"
-          >
-            <Settings className="h-5 w-5" />
-            إعدادات متقدمة
-          </Button>
+        {/* Advanced Settings Button - Enhanced */}
+        <div className="text-center mb-8">
+          <Card className="bg-gradient-to-r from-cybernet-surface to-cybernet-bg border-cybernet-red/30 shadow-[var(--shadow-card)] inline-block">
+            <CardContent className="p-4">
+              <Button 
+                variant="cybernetGhost" 
+                onClick={scrollToSettings}
+                size="lg"
+                className="bg-cybernet-red/10 hover:bg-cybernet-red/20 border-2 border-cybernet-red/50 hover:border-cybernet-red text-cybernet-red hover:text-cybernet-red font-semibold px-8 py-3 h-auto transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_20px_rgba(255,98,98,0.3)]"
+              >
+                <Settings className="h-6 w-6 mr-2" />
+                إعدادات متقدمة
+                <div className="absolute inset-0 bg-cybernet-red/5 rounded-lg animate-pulse"></div>
+              </Button>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Settings Panel */}
