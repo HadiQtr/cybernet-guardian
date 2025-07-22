@@ -486,14 +486,11 @@ const CybernetDashboard = () => {
               <div className="text-center space-y-6">
                 {/* Main message */}
                 <div className="mb-8">
-                  <h3 className="text-xl font-bold text-cybernet-red mb-2">
+                  <h3 className="text-3xl font-bold text-cybernet-red mb-4">
                     Built By SECU Team
                   </h3>
                   <p className="text-lg text-cybernet-text mb-2">
                     في المخيم الشبابي للأمن السيبراني
-                  </p>
-                  <p className="text-lg font-semibold text-cybernet-red mb-4">
-                    صُنع في قطر بأيادي قطرية
                   </p>
                 </div>
 
@@ -555,6 +552,11 @@ const CybernetDashboard = () => {
                       </div>
                     </div>
                   </div>
+                  
+                  {/* Made in Qatar text - moved here */}
+                  <p className="text-lg font-semibold text-cybernet-red mt-6">
+                    صُنع في قطر بأيادي قطرية
+                  </p>
                 </div>
 
                 {/* Copyright */}
