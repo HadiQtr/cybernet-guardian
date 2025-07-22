@@ -102,11 +102,19 @@ const CybernetDashboard = () => {
     <div className="min-h-screen bg-cybernet-bg text-cybernet-text p-6 relative overflow-hidden">
       {/* Animated Background Lines */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cybernet-red/20 to-transparent animate-pulse"></div>
-        <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-cybernet-red/10 to-transparent animate-pulse" style={{animationDelay: '1s'}}></div>
-        <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-cybernet-red/15 to-transparent animate-pulse" style={{animationDelay: '2s'}}></div>
-        <div className="absolute top-3/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-cybernet-red/10 to-transparent animate-pulse" style={{animationDelay: '3s'}}></div>
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cybernet-red/20 to-transparent animate-pulse" style={{animationDelay: '4s'}}></div>
+        <div className="absolute top-20 left-0 w-full h-px bg-gradient-to-r from-transparent via-cybernet-red/30 to-transparent animate-[slideRight_4s_ease-in-out_infinite]"></div>
+        <div className="absolute top-40 right-0 w-full h-px bg-gradient-to-l from-transparent via-cybernet-red/20 to-transparent animate-[slideLeft_6s_ease-in-out_infinite]"></div>
+        <div className="absolute top-60 left-0 w-full h-px bg-gradient-to-r from-transparent via-cybernet-red/25 to-transparent animate-[slideRight_5s_ease-in-out_infinite]" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-80 right-0 w-full h-px bg-gradient-to-l from-transparent via-cybernet-red/15 to-transparent animate-[slideLeft_7s_ease-in-out_infinite]" style={{animationDelay: '1s'}}></div>
+        <div className="absolute bottom-60 left-0 w-full h-px bg-gradient-to-r from-transparent via-cybernet-red/20 to-transparent animate-[slideRight_6s_ease-in-out_infinite]" style={{animationDelay: '3s'}}></div>
+        <div className="absolute bottom-40 right-0 w-full h-px bg-gradient-to-l from-transparent via-cybernet-red/25 to-transparent animate-[slideLeft_5s_ease-in-out_infinite]" style={{animationDelay: '4s'}}></div>
+        <div className="absolute bottom-20 left-0 w-full h-px bg-gradient-to-r from-transparent via-cybernet-red/30 to-transparent animate-[slideRight_4s_ease-in-out_infinite]" style={{animationDelay: '1.5s'}}></div>
+        
+        {/* Vertical moving lines */}
+        <div className="absolute left-20 top-0 w-px h-full bg-gradient-to-b from-transparent via-cybernet-red/20 to-transparent animate-[slideDown_8s_ease-in-out_infinite]"></div>
+        <div className="absolute right-32 top-0 w-px h-full bg-gradient-to-b from-transparent via-cybernet-red/15 to-transparent animate-[slideDown_10s_ease-in-out_infinite]" style={{animationDelay: '2s'}}></div>
+        <div className="absolute left-1/3 top-0 w-px h-full bg-gradient-to-b from-transparent via-cybernet-red/25 to-transparent animate-[slideDown_6s_ease-in-out_infinite]" style={{animationDelay: '4s'}}></div>
+        <div className="absolute right-1/4 top-0 w-px h-full bg-gradient-to-b from-transparent via-cybernet-red/20 to-transparent animate-[slideDown_9s_ease-in-out_infinite]" style={{animationDelay: '1s'}}></div>
       </div>
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
