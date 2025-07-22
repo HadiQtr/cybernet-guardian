@@ -503,26 +503,26 @@ const CybernetDashboard = () => {
                   {/* Team grid - 2x2 layout */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                     {/* Top Row */}
-                    {/* عبدالله ابراهيم - فوق يمين */}
+                    {/* قائد الفريق - فوق يمين */}
                     <div className="order-1 md:order-1">
-                      <div className="p-4 bg-cybernet-bg rounded-lg border border-cybernet-red/20 h-full">
-                        <p className="text-cybernet-text font-bold text-lg text-right mb-2">
-                          عبدالله ابراهيم العمادي
-                        </p>
-                        <p className="text-cybernet-text-muted text-sm text-right">
-                          مطور البرمجيات
-                        </p>
-                      </div>
-                    </div>
-                    
-                    {/* قائد الفريق - فوق يسار */}
-                    <div className="order-2 md:order-2">
                       <div className="p-4 bg-cybernet-bg rounded-lg border border-cybernet-red/20 h-full">
                         <p className="text-cybernet-text font-bold text-lg text-right mb-2">
                           هادي خالد السبيعي
                         </p>
                         <p className="text-cybernet-text-muted text-sm text-right">
                           قائد الفريق - مطور البرمجيات والشبكات
+                        </p>
+                      </div>
+                    </div>
+                    
+                    {/* عبدالله ابراهيم - فوق يسار */}
+                    <div className="order-2 md:order-2">
+                      <div className="p-4 bg-cybernet-bg rounded-lg border border-cybernet-red/20 h-full">
+                        <p className="text-cybernet-text font-bold text-lg text-right mb-2">
+                          عبدالله ابراهيم العمادي
+                        </p>
+                        <p className="text-cybernet-text-muted text-sm text-right">
+                          مطور البرمجيات
                         </p>
                       </div>
                     </div>
