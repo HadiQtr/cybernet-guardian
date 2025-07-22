@@ -320,18 +320,23 @@ const CybernetDashboard = () => {
 
         {/* Additional Options - Centered layout */}
         <div className="flex justify-center mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-lg w-full">
-            {scanCompleted && (
+          {scanCompleted ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-lg w-full">
               <Button variant="cybernetSecondary" className="h-12 text-sm bg-blue-600/20 hover:bg-blue-600/30 border-blue-600/50 text-blue-400 hover:text-blue-300">
                 <FileText className="h-4 w-4" />
                 توليد تقرير
               </Button>
-            )}
-            <Button variant="cybernetSecondary" className="h-12 text-sm">
+              <Button variant="cybernetSecondary" className="h-12 text-sm">
+                <History className="h-4 w-4" />
+                التقارير السابقة
+              </Button>
+            </div>
+          ) : (
+            <Button variant="cybernetSecondary" className="h-12 text-sm w-64">
               <History className="h-4 w-4" />
               التقارير السابقة
             </Button>
-          </div>
+          )}
         </div>
 
         {/* Results Section - Only show after scan completion */}
