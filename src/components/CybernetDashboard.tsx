@@ -463,13 +463,13 @@ const CybernetDashboard = () => {
             <CardContent>
               <div className="flex justify-center">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-lg w-full">
-                  <Button variant="cybernetSecondary" className="h-12 bg-blue-600/20 hover:bg-blue-600/30 border-blue-600/50 text-blue-400 hover:text-blue-300">
-                    <RefreshCw className="h-4 w-4" />
-                    تحديث الأدوات
-                  </Button>
                   <Button variant="cybernetSecondary" className="h-12 bg-cybernet-red/20 hover:bg-cybernet-red/30 border-cybernet-red/50 text-cybernet-red hover:text-red-300">
                     <Power className="h-4 w-4" />
                     إعادة تشغيل الجهاز
+                  </Button>
+                  <Button variant="cybernetSecondary" className="h-12 bg-blue-600/20 hover:bg-blue-600/30 border-blue-600/50 text-blue-400 hover:text-blue-300">
+                    <RefreshCw className="h-4 w-4" />
+                    تحديث الأدوات
                   </Button>
                 </div>
               </div>
