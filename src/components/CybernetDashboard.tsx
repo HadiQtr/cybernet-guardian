@@ -93,18 +93,76 @@ const CybernetDashboard = () => {
     <div className="min-h-screen bg-cybernet-bg text-cybernet-text p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-8">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Shield className="h-12 w-12 text-cybernet-red" />
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-cybernet-red to-cybernet-red/80 bg-clip-text text-transparent">
-              CyberNET
-            </h1>
+        <div className="text-center mb-12">
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <img 
+              src="/lovable-uploads/f4abe8d3-1647-4a63-9c36-7c8a1d224a5c.png" 
+              alt="Secu-PI Logo" 
+              className="h-16 w-auto"
+            />
           </div>
-          <h2 className="text-2xl font-semibold mb-2">لوحة التحكم الأمنية</h2>
-          <p className="text-cybernet-text-muted text-lg">
-            جهاز ذكي لفحص أمان الشبكات واكتشاف التهديدات تلقائياً
+          <h1 className="text-4xl font-bold text-cybernet-text mb-4">Secu-PI</h1>
+          <h2 className="text-2xl font-semibold mb-4 text-cybernet-red">لوحة التحكم الأمنية</h2>
+          <p className="text-cybernet-text-muted text-lg max-w-2xl mx-auto">
+            جهاز ذكي لفحص أمان الشبكات واكتشاف التهديدات تلقائياً باستخدام Raspberry Pi
           </p>
         </div>
+
+        {/* How to Use Section */}
+        <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)] mb-8">
+          <CardHeader>
+            <CardTitle className="text-cybernet-text flex items-center gap-2">
+              <FileText className="h-6 w-6 text-cybernet-red" />
+              طريقة استخدام الأداة
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-4">
+                <h3 className="text-cybernet-red font-semibold">خطوات الاستخدام:</h3>
+                <ol className="space-y-2 text-cybernet-text-muted">
+                  <li className="flex items-start gap-2">
+                    <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">1</span>
+                    اضغط على "ابدأ الفحص الأمني" لبدء مسح الشبكة
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">2</span>
+                    انتظر انتهاء الفحص (يستغرق 2-3 دقائق)
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">3</span>
+                    اعرض النتائج من خلال أزرار العرض
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="bg-cybernet-red text-white rounded-full w-6 h-6 flex items-center justify-center text-sm">4</span>
+                    أدخل بريدك الإلكتروني وأرسل التقرير
+                  </li>
+                </ol>
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-cybernet-red font-semibold">ميزات الأداة:</h3>
+                <ul className="space-y-2 text-cybernet-text-muted">
+                  <li className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-cybernet-red rounded-full"></div>
+                    اكتشاف الأجهزة المتصلة بالشبكة
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-cybernet-red rounded-full"></div>
+                    فحص الثغرات الأمنية المعروفة
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-cybernet-red rounded-full"></div>
+                    توليد تقارير مفصلة بصيغة PDF
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-cybernet-red rounded-full"></div>
+                    إرسال التقارير عبر البريد الإلكتروني
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Main Controls */}
         <div className="grid gap-6 mb-8">
@@ -165,38 +223,86 @@ const CybernetDashboard = () => {
         </div>
 
         {/* Action Buttons Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          <Button 
-            variant="cybernetSecondary" 
-            onClick={() => setShowDevices(!showDevices)}
-            className="h-16"
-          >
-            <Users className="h-6 w-6" />
-            عرض الأجهزة المتصلة
-          </Button>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] transition-all duration-300">
+            <CardContent className="p-6">
+              <Button 
+                variant="cybernetSecondary" 
+                onClick={() => setShowDevices(!showDevices)}
+                className="w-full h-20 flex flex-col gap-2"
+              >
+                <Users className="h-8 w-8" />
+                <span className="text-sm">عرض الأجهزة المتصلة</span>
+              </Button>
+            </CardContent>
+          </Card>
           
-          <Button 
-            variant="cybernetSecondary" 
-            onClick={() => setShowVulnerabilities(!showVulnerabilities)}
-            className="h-16"
-          >
-            <AlertTriangle className="h-6 w-6" />
-            عرض نتائج الثغرات
-          </Button>
+          <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] transition-all duration-300">
+            <CardContent className="p-6">
+              <Button 
+                variant="cybernetSecondary" 
+                onClick={() => setShowVulnerabilities(!showVulnerabilities)}
+                className="w-full h-20 flex flex-col gap-2"
+              >
+                <AlertTriangle className="h-8 w-8" />
+                <span className="text-sm">عرض نتائج الثغرات</span>
+              </Button>
+            </CardContent>
+          </Card>
           
-          <Button variant="cybernetSecondary" className="h-16">
-            <FileText className="h-6 w-6" />
-            توليد تقرير PDF جديد
-          </Button>
-          
-          <Button 
-            variant="cybernetSecondary" 
-            onClick={() => setShowReports(!showReports)}
-            className="h-16"
-          >
-            <History className="h-6 w-6" />
-            عرض التقارير السابقة
-          </Button>
+          <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-card-hover)] transition-all duration-300">
+            <CardContent className="p-6">
+              <Button variant="cybernetSecondary" className="w-full h-20 flex flex-col gap-2">
+                <FileText className="h-8 w-8" />
+                <span className="text-sm">توليد تقرير PDF جديد</span>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Additional Options */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)]">
+            <CardHeader>
+              <CardTitle className="text-cybernet-text flex items-center gap-2">
+                <History className="h-6 w-6 text-cybernet-red" />
+                إدارة التقارير
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <Button 
+                variant="cybernetSecondary" 
+                onClick={() => setShowReports(!showReports)}
+                className="w-full"
+              >
+                <History className="h-5 w-5" />
+                عرض التقارير السابقة
+              </Button>
+              <Button variant="cybernetSecondary" className="w-full">
+                <Download className="h-5 w-5" />
+                تحميل آخر تقرير
+              </Button>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)]">
+            <CardHeader>
+              <CardTitle className="text-cybernet-text flex items-center gap-2">
+                <Eye className="h-6 w-6 text-cybernet-red" />
+                مراقبة الشبكة
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <Button variant="cybernetSecondary" className="w-full">
+                <RefreshCw className="h-5 w-5" />
+                فحص سريع
+              </Button>
+              <Button variant="cybernetSecondary" className="w-full">
+                <Shield className="h-5 w-5" />
+                مراقبة مستمرة
+              </Button>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Results Sections */}
@@ -304,11 +410,11 @@ const CybernetDashboard = () => {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Button variant="cybernetSecondary">
+                <Button variant="cybernetSecondary" className="w-full">
                   <RefreshCw className="h-5 w-5" />
                   تحديث الأدوات
                 </Button>
-                <Button variant="destructive">
+                <Button variant="cybernetSecondary" className="w-full bg-cybernet-red/20 hover:bg-cybernet-red/30 border-cybernet-red/50">
                   <Power className="h-5 w-5" />
                   إعادة تشغيل الجهاز
                 </Button>

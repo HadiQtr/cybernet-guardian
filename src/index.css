@@ -52,6 +52,7 @@
     --shadow-cybernet: 0 8px 32px hsla(0 0% 0% / 0.3);
     --shadow-button: 0 4px 16px hsla(0 61% 69% / 0.3);
     --shadow-card: 0 4px 24px hsla(0 0% 0% / 0.4);
+    --shadow-card-hover: 0 8px 32px hsla(0 0% 0% / 0.5), 0 4px 16px hsla(0 61% 69% / 0.2);
 
     --radius: 0.5rem;
 
