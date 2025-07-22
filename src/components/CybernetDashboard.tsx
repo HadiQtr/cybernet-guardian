@@ -206,39 +206,7 @@ const CybernetDashboard = () => {
 
         {/* Instructions and Severity Levels Sections */}
         <div className="grid md:grid-cols-2 gap-8 mb-8">
-          {/* Vulnerability Severity Levels - Left Side */}
-          <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)]">
-            <CardHeader>
-              <CardTitle className="text-cybernet-text flex items-center justify-center gap-2">
-                <AlertTriangle className="h-6 w-6 text-cybernet-red" />
-                مستويات خطورة الثغرات
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <ul className="space-y-3 text-cybernet-text-muted">
-                  <li className="flex items-center gap-3">
-                    <div className="w-4 h-4 bg-red-600 rounded-full"></div>
-                    <span className="text-red-400 font-semibold">خطيرة جداً</span> - تتطلب تدخل فوري
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-4 h-4 bg-orange-600 rounded-full"></div>
-                    <span className="text-orange-400 font-semibold">خطيرة</span> - تحتاج إصلاح سريع
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-4 h-4 bg-yellow-600 rounded-full"></div>
-                    <span className="text-yellow-400 font-semibold">متوسطة</span> - يُنصح بالإصلاح
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <div className="w-4 h-4 bg-green-600 rounded-full"></div>
-                    <span className="text-green-400 font-semibold">منخفضة</span> - معلومات إضافية
-                  </li>
-                </ul>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* How to Use Tool - Right Side */}
+          {/* How to Use Tool - Left Side */}
           <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)]">
             <CardHeader>
               <CardTitle className="text-cybernet-text flex items-center justify-center gap-2">
@@ -266,6 +234,38 @@ const CybernetDashboard = () => {
                     أدخل بريدك الإلكتروني وأرسل التقرير
                   </li>
                 </ol>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Vulnerability Severity Levels - Right Side */}
+          <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)]">
+            <CardHeader>
+              <CardTitle className="text-cybernet-text flex items-center justify-center gap-2">
+                <AlertTriangle className="h-6 w-6 text-cybernet-red" />
+                مستويات خطورة الثغرات
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <ul className="space-y-3 text-cybernet-text-muted">
+                  <li className="flex items-center gap-3">
+                    <div className="w-4 h-4 bg-red-600 rounded-full"></div>
+                    <span className="text-red-400 font-semibold">خطيرة جداً</span> - تتطلب تدخل فوري
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-4 h-4 bg-orange-600 rounded-full"></div>
+                    <span className="text-orange-400 font-semibold">خطيرة</span> - تحتاج إصلاح سريع
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-4 h-4 bg-yellow-600 rounded-full"></div>
+                    <span className="text-yellow-400 font-semibold">متوسطة</span> - يُنصح بالإصلاح
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <div className="w-4 h-4 bg-green-600 rounded-full"></div>
+                    <span className="text-green-400 font-semibold">منخفضة</span> - معلومات إضافية
+                  </li>
+                </ul>
               </div>
             </CardContent>
           </Card>
