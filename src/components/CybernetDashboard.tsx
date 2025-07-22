@@ -255,82 +255,81 @@ const CybernetDashboard = () => {
           </CardContent>
         </Card>
 
-        {/* Main Scan Button - Centered */}
-        <div className="flex justify-center mb-8">
-          <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)] max-w-md w-full">
-            <CardHeader className="text-center">
-              <CardTitle className="text-cybernet-text flex items-center justify-center gap-2">
-                <Scan className="h-6 w-6 text-cybernet-red" />
-                فحص الشبكة
-              </CardTitle>
-              <CardDescription className="text-cybernet-text-muted">
-                ابدأ فحص شامل للشبكة واكتشاف الأجهزة والثغرات الأمنية
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button 
-                onClick={handleSecurityScan} 
-                disabled={isScanning}
-                size="lg"
-                className="w-full"
-              >
-                {isScanning ? (
-                  <>
-                    <RefreshCw className="h-5 w-5 animate-spin" />
-                    جاري الفحص الأمني...
-                  </>
-                ) : (
-                  <>
-                    <Play className="h-5 w-5" />
-                    ابدأ الفحص الأمني
-                  </>
-                )}
-              </Button>
-            </CardContent>
-          </Card>
+        {/* Main Controls - Side by side */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          {/* Scan Section - Takes 2 columns (wider) */}
+          <div className="md:col-span-2">
+            <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)] h-full">
+              <CardHeader className="text-center">
+                <CardTitle className="text-cybernet-text flex items-center justify-center gap-2">
+                  <Scan className="h-6 w-6 text-cybernet-red" />
+                  فحص الشبكة
+                </CardTitle>
+                <CardDescription className="text-cybernet-text-muted">
+                  ابدأ فحص شامل للشبكة واكتشاف الأجهزة والثغرات الأمنية
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button 
+                  onClick={handleSecurityScan} 
+                  disabled={isScanning}
+                  size="lg"
+                  className="w-full"
+                >
+                  {isScanning ? (
+                    <>
+                      <RefreshCw className="h-5 w-5 animate-spin" />
+                      جاري الفحص الأمني...
+                    </>
+                  ) : (
+                    <>
+                      <Play className="h-5 w-5" />
+                      ابدأ الفحص الأمني
+                    </>
+                  )}
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Email Report Section - Takes 1 column (narrower) */}
+          <div className="md:col-span-1">
+            <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)] h-full">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-cybernet-text flex items-center justify-center gap-2 text-lg">
+                  <Mail className="h-5 w-5 text-cybernet-red" />
+                  إرسال التقرير
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <Input
+                  type="email"
+                  placeholder="أدخل البريد الإلكتروني"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="bg-cybernet-bg border-cybernet-red/30 text-cybernet-text h-10"
+                />
+                <Button onClick={handleSendReport} className="w-full h-10">
+                  <Mail className="h-4 w-4" />
+                  أرسل التقرير
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
         </div>
 
         {/* Additional Options - Centered layout */}
         <div className="flex justify-center mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-lg w-full">
             <Button variant="cybernetSecondary" className="h-12 text-sm">
               <FileText className="h-4 w-4" />
-              توليد تقرير PDF
+              توليد تقرير
             </Button>
             <Button variant="cybernetSecondary" className="h-12 text-sm">
-              <Download className="h-4 w-4" />
-              تحميل آخر تقرير
-            </Button>
-            <Button variant="cybernetSecondary" className="h-12 text-sm">
-              <Shield className="h-4 w-4" />
-              مراقبة مستمرة
+              <History className="h-4 w-4" />
+              التقارير السابقة
             </Button>
           </div>
-        </div>
-
-        {/* Email Report - Compact */}
-        <div className="flex justify-center mb-8">
-          <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)] max-w-md w-full">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-cybernet-text flex items-center justify-center gap-2 text-lg">
-                <Mail className="h-5 w-5 text-cybernet-red" />
-                إرسال التقرير
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <Input
-                type="email"
-                placeholder="أدخل البريد الإلكتروني"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="bg-cybernet-bg border-cybernet-red/30 text-cybernet-text h-10"
-              />
-              <Button onClick={handleSendReport} className="w-full h-10">
-                <Mail className="h-4 w-4" />
-                أرسل التقرير
-              </Button>
-            </CardContent>
-          </Card>
         </div>
 
         {/* Results Section - Only show after scan completion */}
