@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
-import { useToast } from '@/hooks/use-toast';
+import * as ToastPrimitives from "@radix-ui/react-toast"
+import { Slot } from "@radix-ui/react-slot"
+import { cva, type VariantProps } from "class-variance-authority"
+import { cn } from "@/utils"
 import { 
   Shield, 
   Scan, 
@@ -17,9 +16,471 @@ import {
   Eye,
   Download,
   RefreshCw,
-  Power
+  Power,
+  X
 } from 'lucide-react';
 
+// Toast functionality
+const TOAST_LIMIT = 1
+const TOAST_REMOVE_DELAY = 2000
+
+type ToasterToast = {
+  id: string
+  title?: React.ReactNode
+  description?: React.ReactNode
+  className?: string
+  duration?: number
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
+}
+
+const actionTypes = {
+  ADD_TOAST: "ADD_TOAST",
+  UPDATE_TOAST: "UPDATE_TOAST",
+  DISMISS_TOAST: "DISMISS_TOAST",
+  REMOVE_TOAST: "REMOVE_TOAST",
+} as const
+
+let count = 0
+
+function genId() {
+  count = (count + 1) % Number.MAX_SAFE_INTEGER
+  return count.toString()
+}
+
+type ActionType = typeof actionTypes
+
+type Action =
+  | {
+      type: ActionType["ADD_TOAST"]
+      toast: ToasterToast
+    }
+  | {
+      type: ActionType["UPDATE_TOAST"]
+      toast: Partial<ToasterToast>
+    }
+  | {
+      type: ActionType["DISMISS_TOAST"]
+      toastId?: ToasterToast["id"]
+    }
+  | {
+      type: ActionType["REMOVE_TOAST"]
+      toastId?: ToasterToast["id"]
+    }
+
+interface State {
+  toasts: ToasterToast[]
+}
+
+const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>()
+
+const addToRemoveQueue = (toastId: string) => {
+  if (toastTimeouts.has(toastId)) {
+    return
+  }
+
+  const timeout = setTimeout(() => {
+    toastTimeouts.delete(toastId)
+    dispatch({
+      type: "REMOVE_TOAST",
+      toastId: toastId,
+    })
+  }, TOAST_REMOVE_DELAY)
+
+  toastTimeouts.set(toastId, timeout)
+}
+
+export const reducer = (state: State, action: Action): State => {
+  switch (action.type) {
+    case "ADD_TOAST":
+      return {
+        ...state,
+        toasts: [action.toast, ...state.toasts].slice(0, TOAST_LIMIT),
+      }
+
+    case "UPDATE_TOAST":
+      return {
+        ...state,
+        toasts: state.toasts.map((t) =>
+          t.id === action.toast.id ? { ...t, ...action.toast } : t
+        ),
+      }
+
+    case "DISMISS_TOAST": {
+      const { toastId } = action
+
+      if (toastId) {
+        addToRemoveQueue(toastId)
+      } else {
+        state.toasts.forEach((toast) => {
+          addToRemoveQueue(toast.id)
+        })
+      }
+
+      return {
+        ...state,
+        toasts: state.toasts.map((t) =>
+          t.id === toastId || toastId === undefined
+            ? {
+                ...t,
+                open: false,
+              }
+            : t
+        ),
+      }
+    }
+    case "REMOVE_TOAST":
+      if (action.toastId === undefined) {
+        return {
+          ...state,
+          toasts: [],
+        }
+      }
+      return {
+        ...state,
+        toasts: state.toasts.filter((t) => t.id !== action.toastId),
+      }
+  }
+}
+
+const listeners: Array<(state: State) => void> = []
+
+let memoryState: State = { toasts: [] }
+
+function dispatch(action: Action) {
+  memoryState = reducer(memoryState, action)
+  listeners.forEach((listener) => {
+    listener(memoryState)
+  })
+}
+
+type Toast = Omit<ToasterToast, "id">
+
+function toast({ ...props }: Toast) {
+  const id = genId()
+
+  const update = (props: ToasterToast) =>
+    dispatch({
+      type: "UPDATE_TOAST",
+      toast: { ...props, id },
+    })
+  const dismiss = () => dispatch({ type: "DISMISS_TOAST", toastId: id })
+
+  dispatch({
+    type: "ADD_TOAST",
+    toast: {
+      ...props,
+      id,
+      open: true,
+      onOpenChange: (open) => {
+        if (!open) dismiss()
+      },
+    },
+  })
+
+  // Auto dismiss after duration
+  if (props.duration && props.duration > 0) {
+    setTimeout(() => {
+      dismiss()
+    }, props.duration)
+  }
+
+  return {
+    id: id,
+    dismiss,
+    update,
+  }
+}
+
+export function useToast() {
+  const [state, setState] = React.useState<State>(memoryState)
+
+  React.useEffect(() => {
+    listeners.push(setState)
+    return () => {
+      const index = listeners.indexOf(setState)
+      if (index > -1) {
+        listeners.splice(index, 1)
+      }
+    }
+  }, [state])
+
+  return {
+    ...state,
+    toast,
+    dismiss: (toastId?: string) => dispatch({ type: "DISMISS_TOAST", toastId }),
+  }
+}
+
+// Button component
+const buttonVariants = cva(
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        destructive:
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        outline:
+          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        secondary:
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline",
+        cybernet: "bg-gradient-to-r from-cybernet-red to-cybernet-red/90 text-white hover:from-cybernet-red/90 hover:to-cybernet-red/80 shadow-[var(--shadow-button)] hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] rounded-xl",
+        cybernetSecondary: "bg-cybernet-surface text-cybernet-text border border-cybernet-red/20 hover:bg-cybernet-red/10 hover:border-cybernet-red/40 rounded-xl",
+        cybernetGhost: "text-cybernet-text hover:bg-cybernet-surface/50 rounded-xl",
+      },
+      size: {
+        default: "h-12 px-6 py-3",
+        sm: "h-9 rounded-lg px-3",
+        lg: "h-14 rounded-xl px-8 text-base",
+        icon: "h-12 w-12 rounded-xl",
+      },
+    },
+    defaultVariants: {
+      variant: "cybernet",
+      size: "default",
+    },
+  }
+)
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean
+}
+
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button"
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      />
+    )
+  }
+)
+
+// Card components
+export const Card = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "rounded-lg border bg-card text-card-foreground shadow-sm",
+      className
+    )}
+    {...props}
+  />
+))
+
+export const CardHeader = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex flex-col space-y-1.5 p-6", className)}
+    {...props}
+  />
+))
+
+export const CardTitle = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLHeadingElement>
+>(({ className, ...props }, ref) => (
+  <h3
+    ref={ref}
+    className={cn(
+      "text-2xl font-semibold leading-none tracking-tight",
+      className
+    )}
+    {...props}
+  />
+))
+
+export const CardDescription = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLParagraphElement>
+>(({ className, ...props }, ref) => (
+  <p
+    ref={ref}
+    className={cn("text-sm text-muted-foreground", className)}
+    {...props}
+  />
+))
+
+export const CardContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
+))
+
+// Input component
+export const Input = React.forwardRef<
+  HTMLInputElement,
+  React.InputHTMLAttributes<HTMLInputElement>
+>(({ className, type, ...props }, ref) => {
+  return (
+    <input
+      type={type}
+      className={cn(
+        "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+        className
+      )}
+      ref={ref}
+      {...props}
+    />
+  )
+})
+
+// Badge component
+const badgeVariants = cva(
+  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+  {
+    variants: {
+      variant: {
+        default:
+          "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
+        secondary:
+          "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        destructive:
+          "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
+        outline: "text-foreground",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+)
+
+export interface BadgeProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof badgeVariants> {}
+
+export function Badge({ className, variant, ...props }: BadgeProps) {
+  return (
+    <div className={cn(badgeVariants({ variant }), className)} {...props} />
+  )
+}
+
+// Toast components
+const ToastProvider = ToastPrimitives.Provider
+
+const ToastViewport = React.forwardRef<
+  React.ElementRef<typeof ToastPrimitives.Viewport>,
+  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Viewport>
+>(({ className, ...props }, ref) => (
+  <ToastPrimitives.Viewport
+    ref={ref}
+    className={cn(
+      "fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]",
+      className
+    )}
+    {...props}
+  />
+))
+
+const ToastComponent = React.forwardRef<
+  React.ElementRef<typeof ToastPrimitives.Root>,
+  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root>
+>(({ className, ...props }, ref) => {
+  return (
+    <ToastPrimitives.Root
+      ref={ref}
+      className={cn(
+        "group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full",
+        className
+      )}
+      {...props}
+    />
+  )
+})
+
+const ToastAction = React.forwardRef<
+  React.ElementRef<typeof ToastPrimitives.Action>,
+  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Action>
+>(({ className, ...props }, ref) => (
+  <ToastPrimitives.Action
+    ref={ref}
+    className={cn(
+      "inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium ring-offset-background transition-colors hover:bg-secondary focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 group-[.destructive]:border-muted/40 group-[.destructive]:hover:border-destructive/30 group-[.destructive]:hover:bg-destructive group-[.destructive]:hover:text-destructive-foreground group-[.destructive]:focus:ring-destructive",
+      className
+    )}
+    {...props}
+  />
+))
+
+const ToastClose = React.forwardRef<
+  React.ElementRef<typeof ToastPrimitives.Close>,
+  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Close>
+>(({ className, ...props }, ref) => (
+  <ToastPrimitives.Close
+    ref={ref}
+    className={cn(
+      "absolute right-2 top-2 rounded-md p-1 text-foreground/50 opacity-0 transition-opacity hover:text-foreground focus:opacity-100 focus:outline-none focus:ring-2 group-hover:opacity-100 group-[.destructive]:text-red-300 group-[.destructive]:hover:text-red-50 group-[.destructive]:focus:ring-red-400 group-[.destructive]:focus:ring-offset-red-600",
+      className
+    )}
+    toast-close=""
+    {...props}
+  >
+    <X className="h-4 w-4" />
+  </ToastPrimitives.Close>
+))
+
+const ToastTitle = React.forwardRef<
+  React.ElementRef<typeof ToastPrimitives.Title>,
+  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Title>
+>(({ className, ...props }, ref) => (
+  <ToastPrimitives.Title
+    ref={ref}
+    className={cn("text-sm font-semibold", className)}
+    {...props}
+  />
+))
+
+const ToastDescription = React.forwardRef<
+  React.ElementRef<typeof ToastPrimitives.Description>,
+  React.ComponentPropsWithoutRef<typeof ToastPrimitives.Description>
+>(({ className, ...props }, ref) => (
+  <ToastPrimitives.Description
+    ref={ref}
+    className={cn("text-sm opacity-90", className)}
+    {...props}
+  />
+))
+
+export function Toaster() {
+  const { toasts } = useToast()
+
+  return (
+    <ToastProvider>
+      {toasts.map(function ({ id, title, description, ...props }) {
+        return (
+          <ToastComponent key={id} {...props}>
+            <div className="grid gap-1">
+              {title && <ToastTitle>{title}</ToastTitle>}
+              {description && (
+                <ToastDescription>{description}</ToastDescription>
+              )}
+            </div>
+            <ToastClose />
+          </ToastComponent>
+        )
+      })}
+      <ToastViewport />
+    </ToastProvider>
+  )
+}
+
+// Interface definitions
 interface Device {
   ip: string;
   mac: string;
@@ -38,7 +499,8 @@ interface Vulnerability {
   severity: 'critical' | 'high' | 'medium' | 'low';
 }
 
-const CybernetDashboard = () => {
+// Main Dashboard Component
+export const CybernetDashboard = () => {
   const { toast } = useToast();
   const [email, setEmail] = useState('');
   const [isScanning, setIsScanning] = useState(false);
@@ -408,41 +870,51 @@ const CybernetDashboard = () => {
               <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)]">
                 <CardHeader>
                   <CardTitle className="text-cybernet-text flex items-center justify-center gap-2">
-                    <AlertTriangle className="h-6 w-6 text-cybernet-red" />
+                    <Shield className="h-6 w-6 text-cybernet-red" />
                     الثغرات المكتشفة ({vulnerabilities.length})
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-4">
+                  <div className="space-y-6">
                     {vulnerabilities.map((vuln, index) => (
-                      <div key={index} className="border border-cybernet-red/20 rounded-lg p-4">
-                        <div className="flex items-start justify-between mb-2">
-                          <h4 className="text-cybernet-text font-semibold">{vuln.name}</h4>
-                          <div className="flex gap-2">
-                            {getSeverityBadge(vuln.severity)}
-                            {vuln.cve && (
-                              <Badge variant="destructive">{vuln.cve}</Badge>
-                            )}
-                            <Badge className="bg-cybernet-red/20 text-cybernet-text">
-                              Port {vuln.port}
-                            </Badge>
+                      <Card key={index} className="bg-cybernet-bg border-cybernet-red/10">
+                        <CardHeader className="pb-3">
+                          <div className="flex justify-between items-start">
+                            <div className="flex-1">
+                              <CardTitle className="text-lg text-cybernet-text">{vuln.name}</CardTitle>
+                              {vuln.cve && (
+                                <p className="text-sm text-cybernet-text-muted mt-1">{vuln.cve}</p>
+                              )}
+                            </div>
+                            <div className="flex flex-col gap-2 items-end">
+                              {getSeverityBadge(vuln.severity)}
+                              <Badge variant="outline" className="text-xs">
+                                Port {vuln.port}
+                              </Badge>
+                            </div>
                           </div>
-                        </div>
-                         <p className="text-cybernet-text-muted mb-2 text-right">{vuln.description}</p>
-                          <details className="text-sm mb-2">
-                            <summary className="text-cybernet-red cursor-pointer mb-2 text-right">التفاصيل التقنية</summary>
-                            <div className="bg-cybernet-bg p-3 rounded border-r-4 border-cybernet-red">
-                              <p className="mb-2 text-right"><strong>التفاصيل:</strong> {vuln.technicalDetails}</p>
-                              <p className="text-right"><strong>طريقة الاستغلال:</strong> {vuln.exploitation}</p>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="space-y-4">
+                            <div>
+                              <h4 className="font-semibold text-cybernet-text mb-2">الوصف:</h4>
+                              <p className="text-cybernet-text-muted">{vuln.description}</p>
                             </div>
-                          </details>
-                          <details className="text-sm">
-                            <summary className="text-green-400 cursor-pointer mb-2 text-right">كيفية الوقاية والحماية</summary>
-                            <div className="bg-green-950/20 p-3 rounded border-r-4 border-green-600">
-                              <p className="text-right text-green-400 rtl-content"><strong>الحلول الموصى بها:</strong> {vuln.prevention}</p>
+                            <div>
+                              <h4 className="font-semibold text-cybernet-text mb-2">التفاصيل التقنية:</h4>
+                              <p className="text-cybernet-text-muted">{vuln.technicalDetails}</p>
                             </div>
-                          </details>
-                      </div>
+                            <div>
+                              <h4 className="font-semibold text-cybernet-text mb-2">طريقة الاستغلال:</h4>
+                              <p className="text-cybernet-text-muted">{vuln.exploitation}</p>
+                            </div>
+                            <div>
+                              <h4 className="font-semibold text-cybernet-text mb-2">الحماية:</h4>
+                              <p className="text-cybernet-text-muted">{vuln.prevention}</p>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
                     ))}
                   </div>
                 </CardContent>
@@ -450,145 +922,7 @@ const CybernetDashboard = () => {
             )}
           </div>
         )}
-
-        {/* Settings Button - Enhanced and moved down */}
-        <div className="text-center mt-12 mb-8">
-          <Button 
-            onClick={scrollToSettings}
-            size="lg"
-            className="bg-gradient-to-r from-cybernet-red/20 via-cybernet-red/30 to-cybernet-red/20 
-                       border-2 border-cybernet-red/40 text-cybernet-red hover:text-white
-                       hover:bg-gradient-to-r hover:from-cybernet-red/40 hover:via-cybernet-red/50 hover:to-cybernet-red/40
-                       hover:border-cybernet-red/60 hover:shadow-lg hover:shadow-cybernet-red/25
-                       transform hover:scale-105 transition-all duration-300 ease-out
-                       px-8 py-4 rounded-lg font-semibold backdrop-blur-sm"
-          >
-            <Settings className="h-5 w-5 mr-2" />
-            إعدادات متقدمة
-          </Button>
-        </div>
-
-        {/* Settings Panel */}
-        {showSettings && (
-          <Card id="settings-panel" className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)] mt-6">
-            <CardHeader>
-              <CardTitle className="text-cybernet-text flex items-center justify-center gap-2">
-                <Settings className="h-6 w-6 text-cybernet-red" />
-                الإعدادات المتقدمة
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="flex justify-center">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-lg w-full">
-                  <Button variant="cybernetSecondary" className="h-12 bg-cybernet-red/20 hover:bg-cybernet-red/30 border-cybernet-red/50 text-cybernet-red hover:text-red-300">
-                    <Power className="h-4 w-4" />
-                    إعادة تشغيل الجهاز
-                  </Button>
-                  <Button variant="cybernetSecondary" className="h-12 bg-blue-600/20 hover:bg-blue-600/30 border-blue-600/50 text-blue-400 hover:text-blue-300">
-                    <RefreshCw className="h-4 w-4" />
-                    تحديث الأدوات
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        )}
       </div>
-      
-      {/* Footer */}
-      <footer className="mt-16 pb-8">
-        <div className="max-w-7xl mx-auto relative z-10">
-          <Card className="bg-cybernet-surface border-cybernet-red/20 shadow-[var(--shadow-card)]">
-            <CardContent className="p-8">
-              <div className="text-center space-y-6">
-                {/* Main message */}
-                <div className="mb-8">
-                  <h3 className="text-3xl font-bold text-cybernet-red mb-4">
-                    Built By SECU Team
-                  </h3>
-                  <p className="text-lg text-cybernet-text mb-2">
-                    في المخيم الشبابي للأمن السيبراني
-                  </p>
-                </div>
-
-                {/* Team members section */}
-                <div className="mb-8">
-                  <h4 className="text-2xl font-bold text-cybernet-text mb-6">
-                    أعضاء الفريق
-                  </h4>
-                  
-                  {/* Team grid - 2x2 layout */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                    {/* Top Row */}
-                    {/* قائد الفريق - فوق يمين */}
-                    <div className="order-1 md:order-1">
-                      <div className="p-4 bg-cybernet-bg rounded-lg border border-cybernet-red/20 h-full">
-                        <p className="text-cybernet-text font-bold text-lg text-right mb-2">
-                          هادي خالد السبيعي
-                        </p>
-                        <p className="text-cybernet-text-muted text-sm text-right">
-                          قائد الفريق - مطور البرمجيات والشبكات
-                        </p>
-                      </div>
-                    </div>
-                    
-                    {/* عبدالله ابراهيم - فوق يسار */}
-                    <div className="order-2 md:order-2">
-                      <div className="p-4 bg-cybernet-bg rounded-lg border border-cybernet-red/20 h-full">
-                        <p className="text-cybernet-text font-bold text-lg text-right mb-2">
-                          عبدالله ابراهيم العمادي
-                        </p>
-                        <p className="text-cybernet-text-muted text-sm text-right">
-                          مطور البرمجيات
-                        </p>
-                      </div>
-                    </div>
-                    
-                    {/* Bottom Row */}
-                    {/* جبر النعمة - تحت يمين */}
-                    <div className="order-3 md:order-3">
-                      <div className="p-4 bg-cybernet-bg rounded-lg border border-cybernet-red/20 h-full">
-                        <p className="text-cybernet-text font-bold text-lg text-right mb-2">
-                          جبر جاسم النعمة
-                        </p>
-                        <p className="text-cybernet-text-muted text-sm text-right">
-                          مطور الموقع الالكتروني
-                        </p>
-                      </div>
-                    </div>
-                    
-                    {/* ناصر الغفاري - تحت يسار */}
-                    <div className="order-4 md:order-4">
-                      <div className="p-4 bg-cybernet-bg rounded-lg border border-cybernet-red/20 h-full">
-                        <p className="text-cybernet-text font-bold text-lg text-right mb-2">
-                          ناصر الغفاري
-                        </p>
-                        <p className="text-cybernet-text-muted text-sm text-right">
-                          مسؤول الديزاين والتصميم
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Made in Qatar text - moved here */}
-                  <p className="text-lg font-semibold text-cybernet-red mt-6">
-                    صُنع في قطر بأيادي قطرية
-                  </p>
-                </div>
-
-                {/* Copyright */}
-                <div className="pt-6 border-t border-cybernet-red/20">
-                  <p className="text-cybernet-text-muted text-sm">
-                    © 2024 فريق SECU - جميع الحقوق محفوظة
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </footer>
     </div>
   );
 };
-
-export default CybernetDashboard;
