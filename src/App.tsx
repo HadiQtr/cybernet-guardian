@@ -911,73 +911,53 @@ export const CybernetDashboard = () => {
                          <CardContent>
                           <div className="space-y-6">
                             {/* الوصف */}
-                            <div className="p-4 bg-cybernet-surface/50 rounded-lg border border-cybernet-blue/20">
-                              <h4 className="font-semibold text-cybernet-blue mb-3 flex items-center gap-2">
+                            <div className="p-4 bg-cybernet-surface/50 rounded-lg border border-cybernet-blue/30">
+                              <h4 className="font-semibold text-cybernet-text mb-3 flex items-center gap-2">
                                 <FileText className="h-4 w-4" />
-                                الوصف:
+                                الوصف :
                               </h4>
                               <p className="text-cybernet-text leading-relaxed">{vuln.description}</p>
                             </div>
 
                             {/* التفاصيل التقنية */}
-                            <div className="p-4 bg-cybernet-surface/50 rounded-lg border border-yellow-500/20">
-                              <h4 className="font-semibold text-yellow-400 mb-3 flex items-center gap-2">
+                            <div className="p-4 bg-cybernet-surface/50 rounded-lg border border-yellow-500/30">
+                              <h4 className="font-semibold text-cybernet-text mb-3 flex items-center gap-2">
                                 <Terminal className="h-4 w-4" />
-                                التفاصيل التقنية:
+                                التفاصيل التقنية :
                               </h4>
                               <div className="bg-cybernet-bg/50 p-3 rounded border border-yellow-500/10">
-                                <pre className="text-yellow-300 text-sm font-mono whitespace-pre-wrap">{vuln.technicalDetails}</pre>
+                                <pre className="text-cybernet-text text-sm font-mono whitespace-pre-wrap">{vuln.technicalDetails}</pre>
                               </div>
                             </div>
 
                             {/* طريقة الاستغلال */}
-                            <div className="p-4 bg-red-950/30 rounded-lg border border-red-500/30">
-                              <h4 className="font-semibold text-red-400 mb-3 flex items-center gap-2">
+                            <div className="p-4 bg-cybernet-surface/50 rounded-lg border border-red-500/30">
+                              <h4 className="font-semibold text-cybernet-text mb-3 flex items-center gap-2">
                                 <AlertTriangle className="h-4 w-4" />
-                                طريقة الاستغلال:
+                                طريقة الاستغلال :
                               </h4>
-                              <div className="bg-red-950/50 p-3 rounded border border-red-500/20">
-                                <p className="text-red-300 leading-relaxed">{vuln.exploitation}</p>
+                              <div className="bg-cybernet-bg/50 p-3 rounded border border-red-500/10">
+                                <p className="text-cybernet-text leading-relaxed">{vuln.exploitation}</p>
                               </div>
-                              <div className="mt-3 flex items-center gap-2 text-red-400">
+                              <div className="mt-3 flex items-center gap-2 text-cybernet-text">
                                 <AlertCircle className="h-4 w-4" />
-                                <span className="text-sm font-medium">مستوى الخطورة: عالي</span>
+                                <span className="text-sm font-medium">مستوى الخطورة : عالي</span>
                               </div>
                             </div>
 
-                            {/* الحماية */}
-                            <div className="p-4 bg-green-950/30 rounded-lg border border-green-500/30">
-                              <h4 className="font-semibold text-green-400 mb-3 flex items-center gap-2">
+                            {/* طرق الحل */}
+                            <div className="p-4 bg-cybernet-surface/50 rounded-lg border border-green-500/30">
+                              <h4 className="font-semibold text-cybernet-text mb-3 flex items-center gap-2">
                                 <CheckCircle className="h-4 w-4" />
-                                الحماية والتصحيح:
+                                طرق الحل :
                               </h4>
-                              <div className="bg-green-950/50 p-3 rounded border border-green-500/20">
-                                <p className="text-green-300 leading-relaxed">{vuln.prevention}</p>
+                              <div className="bg-cybernet-bg/50 p-3 rounded border border-green-500/10">
+                                <p className="text-cybernet-text leading-relaxed">{vuln.prevention}</p>
                               </div>
-                              <div className="mt-3 flex items-center gap-2 text-green-400">
+                              <div className="mt-3 flex items-center gap-2 text-cybernet-text">
                                 <Shield className="h-4 w-4" />
-                                <span className="text-sm font-medium">حالة الحماية: قابل للتصحيح</span>
+                                <span className="text-sm font-medium">حالة الحماية : قابل للتصحيح</span>
                               </div>
-                            </div>
-
-                            {/* أزرار الإجراءات */}
-                            <div className="flex gap-3 pt-2">
-                              <Button 
-                                variant="outline" 
-                                size="sm" 
-                                className="flex-1 bg-green-950/20 border-green-500/30 text-green-400 hover:bg-green-950/40 hover:text-green-300"
-                              >
-                                <Download className="h-4 w-4 mr-2" />
-                                تحميل التصحيح
-                              </Button>
-                              <Button 
-                                variant="outline" 
-                                size="sm" 
-                                className="flex-1 bg-blue-950/20 border-blue-500/30 text-blue-400 hover:bg-blue-950/40 hover:text-blue-300"
-                              >
-                                <ExternalLink className="h-4 w-4 mr-2" />
-                                المزيد من التفاصيل
-                              </Button>
                             </div>
                           </div>
                         </CardContent>
