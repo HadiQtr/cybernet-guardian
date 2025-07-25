@@ -926,7 +926,7 @@ export const CybernetDashboard = () => {
                                 التفاصيل التقنية :
                               </h4>
                               <div className="bg-cybernet-bg/50 p-3 rounded border border-yellow-500/10">
-                                <pre className="text-cybernet-text text-sm font-mono whitespace-pre-wrap">{vuln.technicalDetails}</pre>
+                                <p className="text-cybernet-text leading-relaxed">{vuln.technicalDetails}</p>
                               </div>
                             </div>
 
