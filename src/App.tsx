@@ -677,7 +677,7 @@ export const CybernetDashboard = () => {
           </div>
           <h2 className="text-2xl font-semibold mb-4 text-cybernet-red">لوحة التحكم الأمنية</h2>
           <p className="text-cybernet-text-muted text-lg max-w-2xl mx-auto text-center">
-            جهاز ذكي لفحص أمان الشبكات واكتشاف التهديدات تلقائياً باستخدام Raspberry Pi
+            أقوى أداة لفحص أمان الشبكات واكتشاف التهديدات تلقائياً في مكان واحد
           </p>
         </div>
 
