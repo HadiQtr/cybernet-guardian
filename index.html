@@ -41,38 +41,6 @@
 
             <!-- Instructions and Severity Levels -->
             <div class="grid md:grid-cols-2 gap-8 mb-8">
-                <!-- How to Use Tool -->
-                <div class="card bg-cybernet-surface border-cybernet-red">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <span class="icon">📄</span>
-                            طريقة استخدام الأداة
-                        </h3>
-                    </div>
-                    <div class="card-content">
-                        <div class="space-y-4">
-                            <ol class="space-y-2 text-cybernet-text-muted">
-                                <li class="flex items-start gap-2">
-                                    <span class="step-number">1</span>
-                                    اضغط على "ابدأ الفحص الأمني" لبدء مسح الشبكة
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <span class="step-number">2</span>
-                                    انتظر انتهاء الفحص (يستغرق 2-3 دقائق)
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <span class="step-number">3</span>
-                                    ستظهر النتائج تلقائياً بعد انتهاء الفحص
-                                </li>
-                                <li class="flex items-start gap-2">
-                                    <span class="step-number">4</span>
-                                    أدخل بريدك الإلكتروني وأرسل التقرير
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Vulnerability Severity Levels -->
                 <div class="card bg-cybernet-surface border-cybernet-red">
                     <div class="card-header">
@@ -104,31 +72,42 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Main Controls -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <!-- Scan Section -->
-                <div class="md:col-span-2">
-                    <div class="card bg-cybernet-surface border-cybernet-red h-full">
-                        <div class="card-header text-center">
-                            <h3 class="card-title">
-                                <span class="icon">🔍</span>
-                                فحص الشبكة
-                            </h3>
-                            <p class="card-description">
-                                ابدأ فحص شامل للشبكة واكتشاف الأجهزة والثغرات الأمنية
-                            </p>
-                        </div>
-                        <div class="card-content">
-                            <button id="scanBtn" class="btn btn-primary w-full">
-                                <span class="icon">▶️</span>
-                                ابدأ الفحص الأمني
-                            </button>
+                <!-- How to Use Tool -->
+                <div class="card bg-cybernet-surface border-cybernet-red">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <span class="icon">📄</span>
+                            طريقة استخدام الأداة
+                        </h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="space-y-4">
+                            <ol class="space-y-2 text-cybernet-text-muted">
+                                <li class="flex items-start gap-2">
+                                    <span class="step-number">1</span>
+                                    اضغط على "ابدأ الفحص الأمني" لبدء مسح الشبكة
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="step-number">2</span>
+                                    انتظر انتهاء الفحص (يستغرق 2-3 دقائق)
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="step-number">3</span>
+                                    ستظهر النتائج تلقائياً بعد انتهاء الفحص
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="step-number">4</span>
+                                    أدخل بريدك الإلكتروني وأرسل التقرير
+                                </li>
+                            </ol>
                         </div>
                     </div>
                 </div>
+            </div>
 
+            <!-- Main Controls -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
                 <!-- Email Report Section -->
                 <div class="md:col-span-1">
                     <div class="card bg-cybernet-surface border-cybernet-red h-full">
@@ -152,16 +131,39 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Scan Section -->
+                <div class="md:col-span-3">
+                    <div class="card bg-cybernet-surface border-cybernet-red h-full">
+                        <div class="card-header text-center">
+                            <h3 class="card-title">
+                                <span class="icon">🔍</span>
+                                فحص الشبكة
+                            </h3>
+                            <p class="card-description">
+                                ابدأ فحص شامل للشبكة واكتشاف الأجهزة والثغرات الأمنية
+                            </p>
+                        </div>
+                        <div class="card-content">
+                            <button id="scanBtn" class="btn btn-primary w-full">
+                                <span class="icon">▶️</span>
+                                ابدأ الفحص الأمني
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Additional Options -->
-            <div class="flex justify-center mb-8">
-                <div id="additionalOptions" class="w-64">
-                    <button class="btn btn-secondary w-full">
-                        <span class="icon">📋</span>
-                        التقارير السابقة
-                    </button>
-                </div>
+            <div class="flex justify-center gap-4 mb-8">
+                <button class="btn btn-secondary">
+                    <span class="icon">📋</span>
+                    التقارير السابقة
+                </button>
+                <button class="btn btn-secondary">
+                    <span class="icon">📄</span>
+                    توليد تقرير
+                </button>
             </div>
 
             <!-- Results Section -->
