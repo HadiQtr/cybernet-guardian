@@ -40,40 +40,8 @@
 
             <!-- Instructions and Severity Levels -->
             <div class="grid md:grid-cols-2 gap-8 mb-8">
-                <!-- Vulnerability Severity Levels -->
-                <div class="card bg-cybernet-surface border-cybernet-red">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <span class="icon">⚠️</span>
-                            مستويات خطورة الثغرات
-                        </h3>
-                    </div>
-                    <div class="card-content">
-                        <div class="space-y-4">
-                            <ul class="space-y-3 text-cybernet-text-muted">
-                                <li class="flex items-center gap-3">
-                                    <div class="severity-dot critical"></div>
-                                    <span class="text-red-400 font-semibold">خطيرة جداً</span> - تتطلب تدخل فوري
-                                </li>
-                                <li class="flex items-center gap-3">
-                                    <div class="severity-dot high"></div>
-                                    <span class="text-orange-400 font-semibold">خطيرة</span> - تحتاج إصلاح سريع
-                                </li>
-                                <li class="flex items-center gap-3">
-                                    <div class="severity-dot medium"></div>
-                                    <span class="text-yellow-400 font-semibold">متوسطة</span> - يُنصح بالإصلاح
-                                </li>
-                                <li class="flex items-center gap-3">
-                                    <div class="severity-dot low"></div>
-                                    <span class="text-green-400 font-semibold">منخفضة</span> - معلومات إضافية
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- How to Use Tool -->
-                <div class="card bg-cybernet-surface border-cybernet-red">
+                <!-- How to Use Tool - Right Top -->
+                <div class="order-2 md:order-2 card bg-cybernet-surface border-cybernet-red">
                     <div class="card-header">
                         <h3 class="card-title">
                             <span class="icon">📄</span>
@@ -103,12 +71,65 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Vulnerability Severity Levels - Left Top -->
+                <div class="order-1 md:order-1 card bg-cybernet-surface border-cybernet-red">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <span class="icon">⚠️</span>
+                            مستويات خطورة الثغرات
+                        </h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="space-y-4">
+                            <ul class="space-y-3 text-cybernet-text-muted">
+                                <li class="flex items-center gap-3">
+                                    <div class="severity-dot critical"></div>
+                                    <span class="text-red-400 font-semibold">خطيرة جداً</span> - تتطلب تدخل فوري
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <div class="severity-dot high"></div>
+                                    <span class="text-orange-400 font-semibold">خطيرة</span> - تحتاج إصلاح سريع
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <div class="severity-dot medium"></div>
+                                    <span class="text-yellow-400 font-semibold">متوسطة</span> - يُنصح بالإصلاح
+                                </li>
+                                <li class="flex items-center gap-3">
+                                    <div class="severity-dot low"></div>
+                                    <span class="text-green-400 font-semibold">منخفضة</span> - معلومات إضافية
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Main Controls -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                <!-- Email Report Section -->
-                <div class="md:col-span-1">
+                <!-- Scan Section - Right Bottom (Wider) -->
+                <div class="order-2 md:order-2 md:col-span-3">
+                    <div class="card bg-cybernet-surface border-cybernet-red h-full">
+                        <div class="card-header text-center">
+                            <h3 class="card-title">
+                                <span class="icon">🔍</span>
+                                فحص الشبكة
+                            </h3>
+                            <p class="card-description">
+                                ابدأ فحص شامل للشبكة واكتشاف الأجهزة والثغرات الأمنية
+                            </p>
+                        </div>
+                        <div class="card-content">
+                            <button id="scanBtn" class="btn btn-primary w-full">
+                                <span class="icon">▶️</span>
+                                ابدأ الفحص الأمني
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email Report Section - Left Bottom (Smaller) -->
+                <div class="order-1 md:order-1 md:col-span-1">
                     <div class="card bg-cybernet-surface border-cybernet-red h-full">
                         <div class="card-header">
                             <h3 class="card-title text-lg">
@@ -126,27 +147,6 @@
                             <button id="sendReportBtn" class="btn btn-primary w-full">
                                 <span class="icon">📧</span>
                                 أرسل التقرير
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Scan Section -->
-                <div class="md:col-span-3">
-                    <div class="card bg-cybernet-surface border-cybernet-red h-full">
-                        <div class="card-header text-center">
-                            <h3 class="card-title">
-                                <span class="icon">🔍</span>
-                                فحص الشبكة
-                            </h3>
-                            <p class="card-description">
-                                ابدأ فحص شامل للشبكة واكتشاف الأجهزة والثغرات الأمنية
-                            </p>
-                        </div>
-                        <div class="card-content">
-                            <button id="scanBtn" class="btn btn-primary w-full">
-                                <span class="icon">▶️</span>
-                                ابدأ الفحص الأمني
                             </button>
                         </div>
                     </div>
